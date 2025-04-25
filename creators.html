@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Websites for Content Creators | Matthew Kobilan</title>
+  <meta name="description" content="Get a website with e-commerce, exclusive content areas, gamification, and NFT minting to monetize and engage your audience. Tailored for content creators.">
+  <meta name="keywords" content="content creators, custom websites, e-commerce for creators, monetize content, exclusive content, NFT minting, gamification, mobile apps for creators">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    /* Pop effect for cards */
+    .card-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .card-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(220, 38, 38, 0.7); /* Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Pop effect for text */
+    .text-pop {
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+    }
+    .text-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Neon glow effect */
+    .neon-glow {
+      text-shadow: 0 0 5px rgba(220, 38, 38, 0.8), /* Reduced blur for less fuzziness */
+                    0 0 10px rgba(220, 38, 38, 0.6),
+                    0 0 15px rgba(220, 38, 38, 0.4);
+    }
+    /* Text stroke for blue text */
+    .text-stroke-red {
+      -webkit-text-stroke: 1px #DC2626; /* Crimson ruby stroke */
+    }
+    .text-pop:hover .text-stroke-red {
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Ensure block-level elements stack vertically */
+    .text-center > * {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body class="text-white font-['Roboto_Mono']">
+  <!-- Full-page background video -->
+  <video id="background-video" autoplay loop muted playsinline>
+    <source src="assets/videos/galaxies.mp4" type="video/mp4">
+    <img src="assets/images/bg-texture.png" alt="Fallback Background" width="1920" height="1080" class="w-full h-full object-cover">
+  </video>
+
+  <!-- Header -->
+  <header>
+    <nav class="w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-10">
+      <div class="container mx-auto px-4 py-4 text-center">
+        <a href="/" class="text-3xl font-bold neon-glow text-red-600 text-pop font-['Audiowide']">Matthew Kobilan</a>
+        <div class="mt-2 flex justify-center space-x-6">
+          <a href="index.html#about" class="text-pop hover:text-blue-600 transition">About</a>
+          <a href="index.html#services" class="text-pop hover:text-blue-600 transition">Services</a>
+          <a href="index.html#portfolio" class="text-pop hover:text-blue-600 transition">Portfolio</a>
+          <a href="index.html#pricing" class="text-pop hover:text-blue-600 transition">Pricing</a>
+          <a href="index.html#mobile-apps" class="text-pop hover:text-blue-600 transition">Mobile Apps</a>
+          <a href="index.html#contact" class="text-pop hover:text-blue-600 transition">Contact</a>
+        </div>
+        <div class="mt-2 flex justify-center space-x-4">
+          <a href="https://x.com/MatthewKobilan" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/xlogo.png" alt="Follow Matthew Kobilan on X" width="32" height="32" class="w-8 h-8 card-pop">
+          </a>
+          <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/youtube.png" alt="Subscribe to Matthew Kobilan on YouTube" width="32" height="32" class="w-8 h-8 card-pop">
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex items-center justify-center bg-transparent">
+      <div class="text-center">
+        <p class="text-4xl md:text-6xl font-bold font-['Audiowide'] text-blue-600 neon-glow text-stroke-red text-pop mb-12 block">Control your content.</p>
+        <p class="text-4xl md:text-6xl font-bold font-['Audiowide'] text-blue-600 neon-glow text-stroke-red text-pop mb-12 block">Power your brand.</p>
+        <p class="text-4xl md:text-6xl font-bold font-['Audiowide'] text-blue-600 neon-glow text-stroke-red text-pop block">Own the grid.</p>
+      </div>
+    </section>
+
+    <!-- Content Creator Pitch -->
+    <section id="creator-pitch" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center space-y-8">
+        <!-- Card 1: Intro -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-4xl font-bold text-red-500 neon-glow text-pop">🎥 CONTENT CREATORS!!!</h2>
+          <p class="mt-4 text-lg">
+            You’re crushing it on YouTube, TikTok, Instagram. The followers, the views, the momentum—it’s all there.
+          </p>
+          <p class="mt-2 text-lg">
+            But here’s the truth: You don’t own those platforms. The algorithm shifts, you’re toast. Monetization changes? You’re left hanging.
+          </p>
+          <p class="mt-2 text-lg">
+            That’s where I come in.
+          </p>
+        </div>
+        <!-- Card 2: About Me -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold text-red-500 neon-glow text-pop">💻 I’m Matthew Kobilan</h2>
+          <p class="mt-4 text-lg italic text-blue-600 neon-glow text-stroke-red text-pop">Your Personal Full-Stack Powerhouse</p>
+          <p class="mt-2 text-lg">
+            “I’m not just gonna build you a site. I’m gonna build your legacy.”
+          </p>
+          <p class="mt-2 text-lg">
+            I built Lemon Club Collective from the ground up—an immersive Web3 platform packed with NFT gamification, eCommerce, crypto payments, quests, private member areas, and fan dashboards.
+          </p>
+          <p class="mt-2 text-lg">
+            And I can do the same for you.
+          </p>
+        </div>
+        <!-- Card 3: What I’ll Build For You -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold text-red-500 neon-glow text-pop">🎯 What I’ll Build For You</h2>
+          <p class="mt-4 text-lg text-blue-600 neon-glow font-bold text-stroke-red text-pop">🧠 Your Digital Brain</p>
+          <p class="mt-2 text-lg">
+            A central content hub for your fans—your videos, music, livestreams, blog, merch, NFTs—all in one fast, beautifully designed platform.
+          </p>
+          <p class="mt-4 text-lg text-blue-600 neon-glow font-bold text-stroke-red text-pop">🛍️ Sell Anything, Anywhere</p>
+          <p class="mt-2 text-lg">
+            From merch drops to digital products and premium content, I’ll integrate Stripe, PayPal, Coinbase, and Phantom so your fans can buy however they want—credit card or crypto.
+          </p>
+          <p class="mt-4 text-lg text-blue-600 neon-glow font-bold text-stroke-red text-pop">🔓 Unlock Fan-Only Worlds</p>
+          <p class="mt-2 text-lg">
+            Create exclusive zones for your inner circle: behind-the-scenes content, early access, community chats, VIP live streams—you name it, we lock it down and monetize it.
+          </p>
+          <p class="mt-4 text-lg text-blue-600 neon-glow font-bold text-stroke-red text-pop">🏅 Turn Your Fans Into Superfans</p>
+          <p class="mt-2 text-lg">
+            Gamify your brand. Quests, point systems, badges, unlockables—turn engagement into obsession. Let your followers play to connect.
+          </p>
+          <p class="mt-4 text-lg text-blue-600 neon-glow font-bold text-stroke-red text-pop">🖼️ Drop NFTs Like a Pro</p>
+          <p class="mt-2 text-lg">
+            Limited-edition collectibles, access passes, virtual meet-and-greet tickets—I’ll build an NFT minting system that makes it effortless and on-brand.
+          </p>
+          <p class="mt-4 text-lg text-blue-600 neon-glow font-bold text-stroke-red text-pop">📱 Make It Mobile</p>
+          <p class="mt-2 text-lg">
+            If you want it in their hands, I’ll turn your platform into an app with push notifications, mobile UI, and direct-to-fan interactions.
+          </p>
+        </div>
+        <!-- Card 4: Why Me? -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold text-red-500 neon-glow text-pop">🚀 Why Me?</h2>
+          <p class="mt-4 text-lg">
+            Because I don’t build boring. I don’t do cookie-cutter. I do custom, creative, powerful.
+          </p>
+          <p class="mt-2 text-lg">
+            You’re not just a creator. You’re a brand. A movement. A vibe. I build platforms that match your energy and scale your influence.
+          </p>
+          <p class="mt-2 text-lg">
+            I do everything in-house—frontend, backend, payments, blockchain, UI/UX—and I move fast. No agency fluff. No outsourced delays. You talk to me, you get results.
+          </p>
+        </div>
+        <!-- Card 5: Bottom Line -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold text-red-500 neon-glow text-pop">🎯 Bottom Line</h2>
+          <p class="mt-4 text-lg">
+            You’re out there making content. Let me build the kingdom it lives in.
+          </p>
+          <p class="mt-2 text-lg">
+            This site isn’t just a website—it’s your studio, your storefront, your stage, your sanctuary. Let’s build something your fans will obsess over—because it’s not just about content anymore.
+          </p>
+          <p class="mt-2 text-lg">
+            It’s about ownership, scale, and legacy.
+          </p>
+          <p class="mt-4 text-lg text-blue-600 neon-glow font-bold text-stroke-red text-pop">📩 Hit me up. Let’s build your digital HQ.</p>
+          <p class="mt-2 text-lg">
+            This isn’t just a website. It’s your empire. Let’s go viral in the backend too. DM me. We’ll build something iconic.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 bg-opacity-80 py-6 text-center">
+    <div class="flex justify-center space-x-4 mb-2">
+      <a href="https://x.com/MatthewKobilan" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/xlogo.png" alt="Follow Matthew Kobilan on X" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+      <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/youtube.png" alt="Subscribe to Matthew Kobilan on YouTube" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+    </div>
+    <p class="text-red-500 neon-glow">© 2025 Matthew Kobilan. Built in the Neon Future.</p>
+  </footer>
+
+  <script>
+    // Dynamic background hue-rotate effect
+    const video = document.querySelector('#background-video');
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      video.style.filter = `hue-rotate(${scrollPosition * 0.1}deg)`;
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'935850adaba02733',t:'MTc0NTUyNjE3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

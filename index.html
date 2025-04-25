@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthew Kobilan | Web Development for Content Creators & Small Businesses</title>
+  <meta name="description" content="Offering custom websites, e-commerce, Web3 integrations, and more for content creators and small businesses. Let's build your online presence together.">
+  <meta name="keywords" content="web development, content creators, small businesses, custom websites, e-commerce, Web3, NFT minting, gamification, mobile apps">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Roboto Mono and Audiowide -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Audiowide&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Stripe JS -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    /* Pop effect for cards */
+    .card-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .card-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(220, 38, 38, 0.7); /* Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Pop effect for form fields */
+    .field-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .field-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Pop effect for text */
+    .text-pop {
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+    }
+    .text-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Neon glow effect */
+    .neon-glow {
+      text-shadow: 0 0 5px rgba(220, 38, 38, 0.8), /* Reduced blur for less fuzziness */
+                    0 0 10px rgba(220, 38, 38, 0.6),
+                    0 0 15px rgba(220, 38, 38, 0.4);
+    }
+    /* Text stroke for "Hi, I’m Matthew!" and other blue text */
+    .text-stroke-red {
+      -webkit-text-stroke: 1px #DC2626; /* Crimson ruby stroke */
+    }
+    .text-pop:hover .text-stroke-red {
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Pop effect for service box titles */
+    .service-title-pop {
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .service-title-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      border-color: #DC2626; /* Crimson ruby border on hover */
+    }
+    /* Pop effect for buttons */
+    .button-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .button-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Ensure block-level elements stack vertically */
+    .text-center > * {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body class="text-white font-['Roboto_Mono']">
+  <!-- Full-page background video -->
+  <video id="background-video" autoplay loop muted playsinline>
+    <source src="assets/videos/galaxies.mp4" type="video/mp4">
+    <!-- Fallback to static image if video fails -->
+    <img src="assets/images/bg-texture.png" alt="Fallback Background" width="1920" height="1080" class="w-full h-full object-cover">
+  </video>
+
+  <!-- Header -->
+  <header>
+    <nav class="w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-10">
+      <div class="container mx-auto px-4 py-4 text-center">
+        <a href="/" class="text-3xl font-bold neon-glow text-red-600 text-pop font-['Audiowide']">Matthew Kobilan</a>
+        <div class="mt-2 flex justify-center space-x-6">
+          <a href="#about" class="text-pop hover:text-blue-600 transition">About</a>
+          <a href="#services" class="text-pop hover:text-blue-600 transition">Services</a>
+          <a href="#portfolio" class="text-pop hover:text-blue-600 transition">Portfolio</a>
+          <a href="#pricing" class="text-pop hover:text-blue-600 transition">Pricing</a>
+          <a href="#mobile-apps" class="text-pop hover:text-blue-600 transition">Mobile Apps</a>
+          <a href="#contact" class="text-pop hover:text-blue-600 transition">Contact</a>
+          <a href="creators.html" class="text-pop hover:text-blue-600 transition">Creators</a>
+        </div>
+        <div class="mt-2 flex justify-center space-x-4">
+          <a href="https://x.com/MatthewKobilan" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/xlogo.png" alt="Follow Matthew Kobilan on X" width="32" height="32" class="w-8 h-8 card-pop">
+          </a>
+          <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/youtube.png" alt="Subscribe to Matthew Kobilan on YouTube" width="32" height="32" class="w-8 h-8 card-pop">
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="min-h-screen"></section>
+
+    <!-- Intro -->
+    <section id="intro" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold neon-glow text-blue-600 glitch text-stroke-red text-pop font-['Audiowide']">Hi, I’m Matthew</h1>
+        <p class="text-xl md:text-3xl mt-4 text-red-500 neon-glow text-pop">Crafting Neon-Charged Websites in a Cyberpunk World</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">Your Neon-Powered Web3 Weapon</h2>
+          <img src="assets/images/headshot.jpg" alt="Matthew Kobilan, Web Developer for Content Creators" width="128" height="128" class="mx-auto mt-8 w-32 h-32 rounded-full border-4 border-red-600 neon-border card-pop">
+          <p class="mt-6 text-lg">
+            I’m Matthew Kobilan, a full-stack Web3 developer with a knack for turning wild ideas into neon-charged digital realities. I’ve built platforms like <a href="https://www.lemonclubcollective.com" class="text-red-500 hover:text-blue-600 transition">Lemon Club Collective</a>, a gamified Web3 app with Solana NFT minting, e-commerce, and dynamic quests. Using cutting-edge AI tools, I craft scalable apps that rival agency-grade work—think immersive UI, blockchain integration, and lightning-fast performance.
+          </p>
+          <p class="mt-4 text-lg">
+            My toolbox? Frontend magic with React, Tailwind, and parallax effects; backend power with Node.js, MongoDB, and APIs; blockchain wizardry on Solana and Ethereum; and payment systems like Stripe, PayPal, Coinbase, and Phantom. I’m your one-man dev team for e-commerce, gamification (leaderboards, badges, oh my!), NFT minting, mobile apps, and AI-driven features. Check out my <a href="assets/FullStackCVMatthewKobilan.pdf" class="text-red-500 hover:text-blue-600 transition">resume</a> for the full scoop!
+          </p>
+          <p class="mt-4 text-lg">
+            <span class="text-red-500 neon-glow font-bold">Why me?</span> I don’t just code—I create experiences that make your brand pop in a crowded digital world. Whether it’s a startup store or a blockchain empire, I deliver fast, stylish, and innovative solutions. Let’s build something epic together!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Neon-Powered Web3 Weapon -->
+    <section id="why-hire-me" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center space-y-8">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">🔥 Neon Arsenal Unleashed!</h2>
+        <!-- Card 1: Intro -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h3 class="text-2xl font-bold text-red-500 neon-glow text-pop">🧩 Your Digital Empire, Built by One Man</h3>
+          <p class="mt-4 text-lg">
+            I’m not a team. I’m a weapon. A full-stack Web3 developer who builds complete digital ecosystems that others say take an agency. I do it faster, smarter, and with more firepower than most teams combined.
+          </p>
+        </div>
+        <!-- Card 2: Core Power -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold text-red-500 neon-glow text-pop">🥇 Core Power</h2>
+          <ul class="mt-4 text-lg text-left">
+            <li><strong>Launch Your Own eCommerce Platform:</strong> Set up a custom-built store where you or your users can list products. Think Etsy meets Shopify—tailored to your brand.</li>
+            <li><strong>Printify Integration:</strong> Plug into automated merch fulfillment with Printify—design, sync, and sell, hands-free.</li>
+            <li><strong>Payment Systems? Done:</strong> Stripe. PayPal. Coinbase. Phantom Wallet. I’ll wire your business to take fiat and crypto in style.</li>
+          </ul>
+        </div>
+        <!-- Card 3: Community & Content -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold text-red-500 neon-glow text-pop">🥈 Community & Content</h2>
+          <ul class="mt-4 text-lg text-left">
+            <li><strong>Social Network on Your Site:</strong> Want a members-only community, discussions, DMs, or forums? Say the word.</li>
+            <li><strong>Private Access & Paywalls:</strong> Launch a premium members-only area with locked features and exclusive content.</li>
+            <li><strong>Blog and Video Sections:</strong> Boost traffic and SEO with a full blog. Give your brand a voice. Want to host videos for you and your users? You got it.</li>
+          </ul>
+        </div>
+        <!-- Card 4: Next-Level Tech -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold text-red-500 neon-glow text-pop">💎 Next-Level Tech</h2>
+          <ul class="mt-4 text-lg text-left">
+            <li><strong>Gamification That Converts:</strong> I’ll build interactive quest systems, point mechanics, unlockable content, and reward programs. Example: Users complete quests, earn XP, unlock merch discounts or NFT perks.</li>
+            <li><strong>NFT Minting on Solana (and more):</strong> Want to turn physical or digital products into NFTs? I can mint, stake, evolve, and integrate your NFTs into your site or app.</li>
+            <li><strong>Mobile App Development:</strong> Need a mobile companion to your site? Let’s get it in users’ hands—fast and functional.</li>
+          </ul>
+        </div>
+        <!-- Card 5: Value Proposition -->
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-2xl font-bold neon-glow text-blue-600 text-stroke-red text-pop">💣 Why I’m Your Secret Weapon</h2>
+          <p class="mt-4 text-lg">
+            You bring the vision. I bring the execution—across frontend, backend, Web3, payments, mobile, automation, and gamification. While others promise results, I code them. While others offer roadmaps, I ship full-stack products. You want a platform that looks like a million bucks and runs like it too? Call me. Let’s build something legendary.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">Services</h2>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-blue-600 service-title-pop">Custom Websites</h3>
+            <p class="mt-4">Bespoke sites tailored to your brand, coded with precision.</p>
+          </div>
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-blue-600 service-title-pop">E-commerce</h3>
+            <p class="mt-4">Launch online stores with seamless checkout and flair.</p>
+          </div>
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-blue-600 service-title-pop">SEO & Speed</h3>
+            <p class="mt-4">Boost rankings with optimized, lightning-fast sites.</p>
+          </div>
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-blue-600 service-title-pop">Social Media Features</h3>
+            <p class="mt-4">Forums, groups—let users connect and interact on your site!</p>
+          </div>
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-blue-600 service-title-pop">Payment Processing</h3>
+            <p class="mt-4">Seamless payments with Stripe, PayPal, Coinbase, and Phantom.</p>
+          </div>
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-blue-600 service-title-pop">NFT Minting</h3>
+            <p class="mt-4">Mint NFTs for your customers on Solana and other chains!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">Portfolio</h2>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-red-600 service-title-pop">Lemon Club Collective</h3>
+            <img src="assets/images/lemonclubscreenshot.png" alt="Lemon Club Collective Screenshot - Web3 Platform by Matthew Kobilan" width="800" height="450" class="mt-4 w-full h-48 object-cover rounded-lg">
+            <p class="mt-4 text-lg">
+              A gamified Web3 platform with Solana NFT minting, e-commerce, and crypto payments (Stripe, PayPal, Coinbase, SOL). Features dynamic quests, user rewards, and an admin portal for managing products and users.
+            </p>
+            <a href="https://www.lemonclubcollective.com" class="mt-4 inline-block text-blue-600 text-stroke-red text-pop">Visit Site</a>
+          </div>
+          <div class="p-6 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-xl font-bold text-red-500 neon-glow border-4 border-red-600 service-title-pop">matthewkobilan.com</h3>
+            <img src="assets/images/matthewkobilan-screenshot.jpg" alt="Matthew Kobilan Website Screenshot - Portfolio by Matthew Kobilan" width="800" height="450" class="mt-4 w-full h-48 object-cover rounded-lg">
+            <p class="mt-4 text-lg">
+              My personal site showcasing full-stack skills, e-commerce integration, and payment systems. A cyberpunk-inspired portfolio to connect with clients and display my tech prowess.
+            </p>
+            <a href="/" class="mt-4 inline-block text-blue-600 text-stroke-red text-pop">You’re Here!</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">Pricing</h2>
+        <p class="mt-4 text-lg text-red-500 neon-glow text-pop block">Estimates only—your project’s unique needs set the final price. Let’s talk!</p>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Bronze -->
+          <div class="p-8 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-2xl font-bold text-blue-600 text-stroke-red">Bronze</h3>
+            <p class="text-3xl mt-4">$500 - $1000</p>
+            <ul class="mt-6 text-left space-y-2">
+              <li>✔ 3-Page Site</li>
+              <li>✔ Basic SEO</li>
+              <li>✔ Blog Setup</li>
+              <li>✔ Forum Setup</li>
+              <li>✔ 1 Revision</li>
+            </ul>
+            <a href="checkout.html?tier=bronze" class="mt-8 w-full block bg-red-600 text-white px-4 py-2 rounded-lg transition neon-border button-pop text-center">Buy Now</a>
+          </div>
+          <!-- Silver -->
+          <div class="p-8 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-2xl font-bold text-blue-600 text-stroke-red">Silver</h3>
+            <p class="text-3xl mt-4">$3000 - $7000</p>
+            <p class="text-lg mt-2 text-red-500 neon-glow">Social Media Plan</p>
+            <ul class="mt-6 text-left space-y-2">
+              <li>✔ Everything in Bronze</li>
+              <li>✔ 5-Page Site</li>
+              <li>✔ SEO + Analytics</li>
+              <li>✔ Video Section</li>
+              <li>✔ Private Member Area + Paywalls</li>
+              <li>✔ 2 Revisions</li>
+            </ul>
+            <a href="checkout.html?tier=silver" class="mt-8 w-full block bg-red-600 text-white px-4 py-2 rounded-lg transition neon-border button-pop text-center">Buy Now</a>
+          </div>
+          <!-- Gold -->
+          <div class="p-8 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-2xl font-bold text-blue-600 text-stroke-red">Gold</h3>
+            <p class="text-3xl mt-4">$10,000 - $15,000</p>
+            <p class="text-lg mt-2 text-red-500 neon-glow">Social Media + E-commerce</p>
+            <ul class="mt-6 text-left space-y-2">
+              <li>✔ Everything in Bronze + Silver</li>
+              <li>✔ 7-Page Site</li>
+              <li>✔ E-commerce + Printify</li>
+              <li>✔ Payment Systems (Stripe, PayPal, Coinbase, Phantom)</li>
+              <li>✔ 3 Revisions</li>
+            </ul>
+            <a href="checkout.html?tier=gold" class="mt-8 w-full block bg-red-600 text-white px-4 py-2 rounded-lg transition neon-border button-pop text-center">Buy Now</a>
+          </div>
+          <!-- Platinum -->
+          <div class="p-8 bg-gray-900 rounded-lg neon-border card-pop">
+            <h3 class="text-2xl font-bold text-blue-600 text-stroke-red">Platinum</h3>
+            <p class="text-3xl mt-4">Let’s Talk!</p>
+            <ul class="mt-6 text-left space-y-2">
+              <li>✔ Custom Pages</li>
+              <li>✔ NFT Minting (Solana, Ethereum)</li>
+              <li>✔ Gamification (Quests, Reward Points, Engagement)</li>
+              <li>✔ AI Integrations</li>
+              <li>✔ Full-Stack Solutions</li>
+              <li>✔ 5 Revisions</li>
+            </ul>
+            <a href="checkout.html?tier=platinum" class="mt-8 w-full block bg-blue-600 text-white px-4 py-2 rounded-lg transition neon-border button-pop text-center">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Apps -->
+    <section id="mobile-apps" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop">
+          <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">Mobile Apps</h2>
+          <p class="mt-6 text-lg">
+            Need a custom mobile app for iOS or Android? I build sleek, high-performance apps tailored to your vision—whether it’s a companion to your site or a standalone product. Let’s bring your app idea to life!
+          </p>
+          <a href="#contact" class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg transition neon-border button-pop">Contact Me for a Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">Contact Me</h2>
+        <form id="contact-form" class="mt-12 max-w-lg mx-auto">
+          <input type="text" name="name" placeholder="Name" class="w-full p-3 mb-4 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
+          <input type="email" name="email" placeholder="Email" class="w-full p-3 mb-4 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
+          <textarea name="message" placeholder="Message" class="w-full p-3 mb-4 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" rows="5" required></textarea>
+          <button type="submit" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg transition neon-border button-pop">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 bg-opacity-80 py-6 text-center">
+    <div class="flex justify-center space-x-4 mb-2">
+      <a href="https://x.com/MatthewKobilan" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/xlogo.png" alt="Follow Matthew Kobilan on X" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+      <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/youtube.png" alt="Subscribe to Matthew Kobilan on YouTube" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+    </div>
+    <p class="text-red-500 neon-glow">© 2025 Matthew Kobilan. Built in the Neon Future.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Dynamic background hue-rotate effect
+    const video = document.querySelector('#background-video');
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      // Hue-rotate effect for a cyberpunk glow shift
+      video.style.filter = `hue-rotate(${scrollPosition * 0.1}deg)`;
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'935850adaba02733',t:'MTc0NTUyNjE3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

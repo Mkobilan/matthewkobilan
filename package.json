@@ -1,0 +1,11 @@
+{
+  "name": "matthewkobilan-site",
+  "version": "1.0.0",
+  "description": "Static cyberpunk site for Matthew Kobilan",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
