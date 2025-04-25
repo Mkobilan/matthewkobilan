@@ -95,6 +95,12 @@
       margin-right: auto;
     }
   </style>
+<!-- Favicons for multiple devices -->
+<link rel="icon" type="image/x-icon" href="/assets/images/favicons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicons/site.webmanifest">
 </head>
 <body class="text-white font-['Roboto_Mono']">
   <!-- Full-page background video -->
@@ -350,12 +356,21 @@
     <section id="contact" class="py-20 bg-transparent">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide']">Contact Me</h2>
-        <form id="contact-form" class="mt-12 max-w-lg mx-auto">
-          <input type="text" name="name" placeholder="Name" class="w-full p-3 mb-4 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
-          <input type="email" name="email" placeholder="Email" class="w-full p-3 mb-4 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
-          <textarea name="message" placeholder="Message" class="w-full p-3 mb-4 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" rows="5" required></textarea>
-          <button type="submit" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg transition neon-border button-pop">Send Message</button>
-        </form>
+        <form id="contact-form" class="max-w-lg mx-auto p-8">
+  <div class="mb-4">
+    <label for="name" class="block text-white text-sm font-bold mb-2">Name</label>
+    <input type="text" id="name" name="name" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-600" required>
+  </div>
+  <div class="mb-4">
+    <label for="email" class="block text-white text-sm font-bold mb-2">Email</label>
+    <input type="email" id="email" name="email" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-600" required>
+  </div>
+  <div class="mb-4">
+    <label for="message" class="block text-white text-sm font-bold mb-2">Message</label>
+    <textarea id="message" name="message" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-600" rows="4" required></textarea>
+  </div>
+  <button type="submit" class="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 transition">Submit Inquiry</button>
+</form>
       </div>
     </section>
   </main>
@@ -378,29 +393,30 @@
  <script>
   // Form submission
   document.getElementById('contact-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message')
-    };
-    try {
-      const response = await fetch('https://in53oczfrd.execute-api.us-east-1.amazonaws.com/prod/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      alert(result.message);
-      e.target.reset();
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error submitting inquiry. Please try again.');
-    }
-  });
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = {
+    name: formData.get('name') || '',
+    email: formData.get('email') || '',
+    message: formData.get('message') || ''
+  };
+  console.log('Sending form data:', data); // Log to browser console for debugging
+  try {
+    const response = await fetch('https://in53oczfrd.execute-api.us-east-1.amazonaws.com/prod/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    alert(result.message);
+    e.target.reset();
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    alert('Error submitting inquiry. Please try again.');
+  }
+});
 
   // Dynamic background hue-rotate effect
   const video = document.querySelector('#background-video');
