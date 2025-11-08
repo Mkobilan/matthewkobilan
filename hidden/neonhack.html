@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Hack Activated</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>
+    body {
+      background: #0f1419;
+      overflow: hidden;
+    }
+    .matrix-rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Roboto Mono', monospace;
+      color: #48bb78;
+      font-size: 16px;
+      line-height: 1.2;
+      overflow: hidden;
+    }
+    .matrix-rain span {
+      position: absolute;
+      white-space: pre;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+    .reveal-message {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #ff69b4;
+      background-color: rgba(15, 20, 25, 0.8);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      border: 2px solid #48bb78;
+      box-shadow: 0 0 15px 5px rgba(72, 187, 120, 0.7);
+    }
+  </style>
+</head>
+<body class="font-['Roboto_Mono'] text-white">
+  <div class="matrix-rain"></div>
+  <div class="reveal-message">
+    <h1 class="text-4xl font-bold neon-glow glitch-effect" data-text="Neon Hack Complete">Neon Hack Complete</h1>
+    <p class="mt-4 text-lg">The grid bends to your code. Claim your artifact.</p>
+    <a href="../assets/downloads/DigitalArtifact.pdf" download class="mt-4 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Download Artifact</a>
+    <a href="../index.html" class="mt-4 block text-blue-400 hover:text-pink-400 transition">Return to Grid</a>
+  </div>
+  <script>
+    // Matrix rain effect
+    const canvas = document.querySelector('.matrix-rain');
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
+    const fontSize = 16;
+    const columns = Math.floor(window.innerWidth / fontSize);
+    
+    // Create initial spans
+    for (let i = 0; i < columns; i++) {
+      createRainDrop(i);
+    }
+    
+    function createRainDrop(column) {
+      const span = document.createElement('span');
+      span.style.left = `${column * fontSize}px`;
+      span.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      span.style.animationDelay = `${Math.random() * 2}s`;
+      
+      let text = '';
+      for (let j = 0; j < 20; j++) {
+        text += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      span.textContent = text;
+      canvas.appendChild(span);
+      
+      // Remove span after animation completes and create a new one
+      span.addEventListener('animationend', () => {
+        span.remove();
+        createRainDrop(column);
+      });
+    }
+    
+    // Reveal message after 10 seconds
+    setTimeout(() => {
+      document.querySelector('.reveal-message').style.display = 'block';
+    }, 10000);
+  </script>
+</body>
+</html>

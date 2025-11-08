@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Websites for Content Creators | Matthew Kobilan</title>
+  <meta name="description" content="Get a website with e-commerce, exclusive content areas, gamification, and NFT minting to monetize and engage your audience. Tailored for content creators.">
+  <meta name="keywords" content="content creators, custom websites, e-commerce for creators, monetize content, exclusive content, NFT minting, gamification, mobile apps for creators">
+  <meta name="author" content="Matthew Kobilan">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Custom Websites for Content Creators | Matthew Kobilan">
+  <meta property="og:description" content="Get a website with e-commerce, exclusive content areas, gamification, and NFT minting to monetize and engage your audience.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://matthewkobilan.com/creators.html">
+  <meta property="og:image" content="https://matthewkobilan.com/assets/images/creators-og-image.jpg">
+  
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Custom Websites for Content Creators | Matthew Kobilan">
+  <meta name="twitter:description" content="Get a website with e-commerce, exclusive content areas, gamification, and NFT minting to monetize and engage your audience.">
+  <meta name="twitter:image" content="https://matthewkobilan.com/assets/images/creators-og-image.jpg">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://matthewkobilan.com/creators.html">
+  
+  <!-- Note: Using Tailwind CSS CDN for development. In a future update, we'll implement a proper build process. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <!-- Structured Data for Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Website Development for Content Creators",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Matthew Kobilan Web Development",
+      "url": "https://matthewkobilan.com"
+    },
+    "description": "Custom website development for content creators with membership areas, monetization tools, and audience engagement features.",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "Custom pricing based on project requirements",
+        "priceCurrency": "USD"
+      }
+    },
+    "termsOfService": "Custom development with ongoing support and maintenance",
+    "serviceOutput": "A fully functional custom website with monetization and audience engagement features"
+  }
+  </script>
+  <style>
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    /* Pop effect for cards */
+    .card-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .card-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(157, 23, 77, 0.7); /* Darker Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Pop effect for text */
+    .text-pop {
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+    }
+    .text-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(157, 23, 77, 0.5); /* Darker Crimson ruby neon glow */
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Neon glow effect */
+    .neon-glow {
+      text-shadow: 0 0 5px rgba(157, 23, 77, 0.8), /* Reduced blur for less fuzziness */
+                    0 0 10px rgba(157, 23, 77, 0.6),
+                    0 0 15px rgba(157, 23, 77, 0.4);
+    }
+    /* Text stroke for blue text */
+    .text-stroke-red {
+      -webkit-text-stroke: 1px #991B3B; /* Darker Crimson ruby stroke */
+    }
+    .text-pop:hover .text-stroke-red {
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Ensure block-level elements stack vertically */
+    .text-center > * {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Section title background */
+    .section-title-bg {
+      display: inline-block;
+      padding: 0.5rem 2rem;
+      background-color: rgba(20, 20, 30, 0.85);
+      border-left: 4px solid #5B21B6; /* Darker purple */
+      border-right: 4px solid #991B3B; /* Darker pink */
+      backdrop-filter: blur(5px);
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Card Carousel - Horizontal Wheel Style */
+    .card-carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      height: 500px;
+      margin: 0 auto;
+      perspective: 1200px;
+      overflow: visible;
+    }
+
+    .card-carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .carousel-card {
+      position: absolute;
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      left: 50%;
+      top: 0;
+      transform-origin: center center -250px; /* This creates the wheel effect */
+      transition: all 0.5s ease-out;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      backface-visibility: hidden;
+    }
+
+    .carousel-card-content {
+      background: rgba(17, 24, 39, 0.95);
+      padding: 20px;
+      height: 100%;
+      overflow-y: auto;
+      max-height: 450px;
+      border-radius: 10px;
+      border: 1px solid #5B21B6;
+    }
+
+    .carousel-card.active {
+      z-index: 10;
+      transform: translateX(-50%) translateZ(250px) rotateY(0deg);
+      box-shadow: 0 0 30px rgba(157, 23, 77, 0.7);
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: -70px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .carousel-dot {
+      background: rgba(30, 30, 40, 0.7);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: rgba(157, 23, 77, 0.3);
+    }
+
+    .carousel-dot:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .card-carousel-container {
+        height: auto;
+        perspective: none;
+        overflow-x: auto;
+        padding-bottom: 80px;
+      }
+      
+      .card-carousel {
+        display: flex;
+        flex-wrap: nowrap;
+        height: auto;
+        transform-style: flat;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        padding: 20px 0;
+      }
+      
+      .carousel-card {
+        position: relative;
+        flex: 0 0 85%;
+        max-width: 85%;
+        left: 0;
+        transform: none !important;
+        margin-right: 15px;
+        scroll-snap-align: center;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      .carousel-card.active {
+        box-shadow: 0 0 15px rgba(157, 23, 77, 0.7);
+      }
+      
+      .carousel-card-content {
+        height: auto;
+        min-height: 350px;
+        max-height: none;
+      }
+    }
+  </style>
+  <script>
+    // Prevent auto-scrolling on page load
+    history.scrollRestoration = 'manual';
+    
+    // Force scroll to top on page load
+    window.onbeforeunload = function() {
+      window.scrollTo(0, 0);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Remove any hash from the URL to prevent auto-scrolling
+      if (window.location.hash) {
+        // Remove hash from URL without triggering page reload or history change
+        history.pushState('', document.title, window.location.pathname + window.location.search);
+      }
+      
+      // Force scroll to top
+      window.scrollTo(0, 0);
+      
+      // Also force scroll to top after a short delay
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 100);
+      
+      // And again after a longer delay
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 500);
+    });
+    
+    // Disable automatic scrolling to anchors
+    window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+    });
+  </script>
+</head>
+<body class="text-white font-['Roboto_Mono']">
+  <!-- Full-page background video -->
+  <video id="background-video" autoplay loop muted playsinline>
+    <source src="assets/videos/galaxies.mp4" type="video/mp4">
+    <img src="assets/images/bg-texture.png" alt="Fallback Background" width="1920" height="1080" class="w-full h-full object-cover">
+  </video>
+
+  <!-- Header -->
+  <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-10">
+    <div class="container mx-auto px-4 py-4 text-center relative">
+      <a href="/" class="text-3xl font-bold neon-glow text-pink-500 glitch-text" data-text="Matthew Kobilan">Matthew Kobilan</a>
+      
+      <!-- Menu Toggle Button -->
+      <div class="mobile-menu-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      
+      <!-- Mobile Navigation Menu -->
+      <div class="mobile-menu">
+        <a href="index.html" class="hover:text-blue-400 transition text-pink-500">Back to Home</a>
+        <a href="index.html#intro" class="hover:text-blue-400 transition">Intro</a>
+        <a href="index.html#about" class="hover:text-blue-400 transition">About</a>
+        <a href="index.html#services" class="hover:text-blue-400 transition">Services</a>
+        <a href="index.html#portfolio" class="hover:text-blue-400 transition">Portfolio</a>
+        <a href="index.html#pricing" class="hover:text-blue-400 transition">Pricing</a>
+        <a href="index.html#mobile-apps" class="hover:text-blue-400 transition">Mobile Apps</a>
+        <a href="index.html#terminal" class="hover:text-blue-400 transition">Terminal</a>
+        <a href="index.html#contact" class="hover:text-blue-400 transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex items-center justify-center bg-transparent">
+      <div class="text-center">
+        <p class="text-4xl md:text-6xl font-bold font-['Audiowide'] text-blue-600 neon-glow text-stroke-red text-pop mb-12 block glitch-effect section-title-bg" data-text="Control your content.">Control your content.</p>
+        <p class="text-4xl md:text-6xl font-bold font-['Audiowide'] text-blue-600 neon-glow text-stroke-red text-pop mb-12 block glitch-effect section-title-bg" data-text="Power your brand.">Power your brand.</p>
+        <p class="text-4xl md:text-6xl font-bold font-['Audiowide'] text-blue-600 neon-glow text-stroke-red text-pop block glitch-effect section-title-bg" data-text="Own the grid.">Own the grid.</p>
+      </div>
+    </section>
+
+    <!-- Creator Benefits Section -->
+    <section id="creator-benefits" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 border-4 border-purple-800 text-pop glitch-text section-title-bg" data-text="Creator Benefits">Creator Benefits</h2>
+        <p class="mt-4 mb-8 text-lg text-pink-300">Why build your creator platform with me?</p>
+        
+        <div class="card-carousel-container">
+          <div class="card-carousel">
+            <!-- Creator Card 1: Own Your Platform -->
+            <div class="carousel-card active">
+              <div class="carousel-card-content">
+                <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Own Your Platform</h3>
+                <div class="mt-6 space-y-4 text-left">
+                  <p>Stop building your business on rented land. With your own platform, you:</p>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>Keep 100% of your revenue (minus payment processing fees)</li>
+                    <li>Own your audience data and contact information</li>
+                    <li>Control the user experience from start to finish</li>
+                    <li>Never worry about algorithm changes or platform shutdowns</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Creator Card 2: Multiple Revenue Streams -->
+            <div class="carousel-card">
+              <div class="carousel-card-content">
+                <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Multiple Revenue Streams</h3>
+                <div class="mt-6 space-y-4 text-left">
+                  <p>Diversify your income with multiple monetization options:</p>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>Subscriptions with recurring revenue</li>
+                    <li>Digital product sales (courses, ebooks, templates)</li>
+                    <li>Physical merchandise integration</li>
+                    <li>NFT drops and collectibles</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Creator Card 3: Community Building -->
+            <div class="carousel-card">
+              <div class="carousel-card-content">
+                <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Community Building</h3>
+                <div class="mt-6 space-y-4 text-left">
+                  <p>Foster deeper connections with your audience:</p>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>Private forums and discussion areas</li>
+                    <li>Direct messaging between members</li>
+                    <li>Live events and webinars</li>
+                    <li>Exclusive content for your biggest supporters</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Creator Card 4: Advanced Features -->
+            <div class="carousel-card">
+              <div class="carousel-card-content">
+                <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Advanced Features</h3>
+                <div class="mt-6 space-y-4 text-left">
+                  <p>Engage your audience with cutting-edge technology:</p>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>Gamification with quests and achievements</li>
+                    <li>Token-gated content access</li>
+                    <li>Tiered membership levels</li>
+                    <li>Analytics dashboard to track engagement</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Creator Card 5: Technical Support -->
+            <div class="carousel-card">
+              <div class="carousel-card-content">
+                <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Technical Support</h3>
+                <div class="mt-6 space-y-4 text-left">
+                  <p>Never worry about technical issues:</p>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>Ongoing maintenance and updates</li>
+                    <li>Security monitoring and protection</li>
+                    <li>Performance optimization</li>
+                    <li>Training for you and your team</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Navigation buttons will be added by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Terminal Section -->
+    <section id="terminal" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-pink-700 border-4 border-blue-600 text-pop glitch-text section-title-bg" data-text="Creator Command Center">Creator Command Center</h2>
+        <p class="mt-4 text-lg text-blue-600 neon-glow">Type commands to explore creator-specific features</p>
+        <div id="terminal-container" class="mt-12 max-w-2xl mx-auto scanline animate-on-scroll"></div>
+      </div>
+    </section>
+
+    <!-- Interactive JS -->
+    <script src="assets/js/interactive.js"></script>
+    <script>
+      // Prevent auto-scrolling on page load
+      window.addEventListener('load', function() {
+        // Scroll to top of page
+        window.scrollTo(0, 0);
+      });
+    </script>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 bg-opacity-80 py-6 text-center">
+    <p class="text-lg text-blue-400 mb-4">info@matthewkobilan.com</p>
+    <div class="flex justify-center space-x-4 mb-2">
+      <a href="https://x.com/matthewkobilan" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/xlogo.png" alt="Follow Matthew Kobilan on X" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+      <a href="https://www.linkedin.com/in/matthew-kobilan/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/linkedin.png" alt="Connect with Matthew Kobilan on LinkedIn" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+      <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/youtube.png" alt="Subscribe to Matthew Kobilan on YouTube" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+    </div>
+    <p class="text-red-500 neon-glow neon-pulse"> 2025 Matthew Kobilan. Built in the Neon Future.</p>
+    <a href="index.html" class="mt-4 inline-block text-blue-600 hover:text-red-500 transition cyber-button">Back to Main Site</a>
+  </footer>
+  <!-- Mobile Menu Script -->
+  <script src="assets/js/mobile-menu.js"></script>
+</body>
+</html>

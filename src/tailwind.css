@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles that extend Tailwind */
+@layer components {
+  .neon-glow {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  
+  .text-pop {
+    transition: all 0.3s ease;
+  }
+  
+  .text-pop:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+  
+  .glitch-text {
+    position: relative;
+  }
+}

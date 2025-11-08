@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Matthew Kobilan for Web Development | Checkout</title>
+  <meta name="description" content="Contact Matthew Kobilan to start your web development project. Custom websites, e-commerce, and Web3 solutions for content creators and small businesses.">
+  <meta name="keywords" content="web development, contact web developer, custom websites, e-commerce, Web3, content creators, small businesses">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    /* Pop effect for cards (social icons) */
+    .card-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .card-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(220, 38, 38, 0.7); /* Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Pop effect for text */
+    .text-pop {
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+    }
+    .text-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Pop effect for form fields (unchanged as requested) */
+    .field-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .field-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Pop effect for buttons */
+    .button-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .button-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(220, 38, 38, 0.5); /* Crimson ruby neon glow */
+      border-color: #1E40AF; /* Darker neon sapphire border on hover */
+    }
+    /* Neon glow effect */
+    .neon-glow {
+      text-shadow: 0 0 5px rgba(220, 38, 38, 0.8), /* Reduced blur for less fuzziness */
+                    0 0 10px rgba(220, 38, 38, 0.6),
+                    0 0 15px rgba(220, 38, 38, 0.4);
+    }
+    /* Text stroke for blue text */
+    .text-stroke-red {
+      -webkit-text-stroke: 1px #DC2626; /* Crimson ruby stroke */
+    }
+    .text-pop:hover .text-stroke-red {
+      -webkit-text-stroke-color: #1E40AF; /* Darker neon sapphire stroke on hover */
+    }
+    /* Ensure block-level elements stack vertically */
+    .text-center > * {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Form field styling */
+    .form-field {
+      width: 100%;
+      max-width: 500px; /* Limit the width for better alignment */
+      margin: 0 auto 1rem; /* Center and space fields */
+    }
+  </style>
+</head>
+<body class="text-white font-['Roboto_Mono']">
+  <!-- Full-page background video -->
+  <video id="background-video" autoplay loop muted playsinline>
+    <source src="assets/videos/galaxies.mp4" type="video/mp4">
+    <img src="assets/images/bg-texture.png" alt="Fallback Background" width="1920" height="1080" class="w-full h-full object-cover">
+  </video>
+
+  <header>
+    <nav class="w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-10">
+      <div class="container mx-auto px-4 py-4 text-center">
+        <a href="/" class="text-3xl font-bold neon-glow text-red-600 text-pop font-['Audiowide'] glitch-text" data-text="Matthew Kobilan">Matthew Kobilan</a>
+        <div class="mt-2 flex justify-center space-x-6 stagger-children animate-on-scroll">
+          <a href="index.html#about" class="text-pop hover:text-blue-600 transition">About</a>
+          <a href="index.html#services" class="text-pop hover:text-blue-600 transition">Services</a>
+          <a href="index.html#portfolio" class="text-pop hover:text-blue-600 transition">Portfolio</a>
+          <a href="index.html#pricing" class="text-pop hover:text-blue-600 transition">Pricing</a>
+          <a href="index.html#mobile-apps" class="text-pop hover:text-blue-600 transition">Mobile Apps</a>
+          <a href="index.html#terminal" class="text-pop hover:text-blue-600 transition">Terminal</a>
+          <a href="index.html#contact" class="text-pop hover:text-blue-600 transition">Contact</a>
+          <a href="creators.html" class="text-pop hover:text-blue-600 transition">Creators</a>
+        </div>
+        <div class="mt-2 flex justify-center space-x-4">
+          <a href="https://x.com/MatthewKobilan" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/xlogo.png" alt="Follow Matthew Kobilan on X" width="32" height="32" class="w-8 h-8 card-pop">
+          </a>
+          <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/youtube.png" alt="Subscribe to Matthew Kobilan on YouTube" width="32" height="32" class="w-8 h-8 card-pop">
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl font-bold neon-glow text-blue-600 text-stroke-red text-pop font-['Audiowide'] glitch-effect" data-text="Let's Get Started!">Let's Get Started!</h1>
+      <p class="mt-4 text-lg text-red-500 neon-glow text-pop typing-animation">Fill out the form below, and I'll reach out to discuss your project.</p>
+      <form id="checkout-form" class="mt-12 animate-on-scroll">
+        <input type="hidden" name="tier" id="tier" value="">
+        <input type="text" name="name" placeholder="Name" class="form-field p-3 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
+        <input type="email" name="email" placeholder="Email" class="form-field p-3 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
+        <textarea name="comment" placeholder="Tell me about your project..." class="form-field p-3 bg-gray-800 border border-red-600 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" rows="5" required></textarea>
+        <button type="submit" class="form-field bg-blue-600 text-white px-4 py-3 rounded-lg transition neon-border button-pop text-stroke-red cyber-button">Submit Inquiry</button>
+      </form>
+      <a href="index.html" class="mt-8 inline-block text-blue-600 text-stroke-red text-pop">Back to Home</a>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 bg-opacity-80 py-6 text-center">
+    <div class="flex justify-center space-x-4 mb-2">
+      <a href="https://x.com/MatthewKobilan" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/xlogo.png" alt="Follow Matthew Kobilan on X" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+      <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" rel="noopener noreferrer">
+        <img src="assets/images/youtube.png" alt="Subscribe to Matthew Kobilan on YouTube" width="32" height="32" class="w-8 h-8 card-pop">
+      </a>
+    </div>
+    <p class="text-red-500 neon-glow neon-pulse"> 2025 Matthew Kobilan. Built in the Neon Future.</p>
+  </footer>
+
+  <!-- Interactive JS -->
+  <script src="assets/js/interactive.js"></script>
+  <script>
+    // Get the tier from the URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const tier = urlParams.get('tier');
+    document.getElementById('tier').value = tier || 'unknown';
+
+    // Form submission (mocked for local testing)
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = {
+        tier: formData.get('tier'),
+        name: formData.get('name'),
+        email: formData.get('email'),
+        comment: formData.get('comment')
+      };
+      console.log('Checkout Form Data:', data);
+      alert('Inquiry submitted! (Mocked locally - check console)');
+      e.target.reset();
+    });
+
+    // Add glitch-text class to headings for the glitch effect
+    document.querySelectorAll('h1, h2, h3').forEach(heading => {
+      if (!heading.classList.contains('glitch-text') && !heading.classList.contains('glitch-effect')) {
+        heading.classList.add('glitch-text');
+        heading.setAttribute('data-text', heading.textContent);
+      }
+    });
+  </script>
+</body>
+</html>

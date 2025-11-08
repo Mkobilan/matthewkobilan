@@ -1,0 +1,870 @@
+:root {
+  --neon-pink: #ff69b4;
+  --neon-blue: #60A5FA;
+  --neon-purple: #5B21B6;
+  --text-glow: none;
+}
+
+/* Update existing color references to use variables */
+.neon-glow {
+  text-shadow: 
+    0 0 5px var(--neon-pink),
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    var(--text-glow);
+}
+
+.neon-glow-intense {
+  text-shadow: 
+    0 0 5px var(--neon-pink),
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    0 0 40px var(--neon-pink),
+    0 0 80px var(--neon-pink),
+    var(--text-glow);
+}
+
+.neon-border {
+  box-shadow: 
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-pink),
+    inset 0 0 5px var(--neon-blue),
+    var(--text-glow);
+}
+
+.neon-border-intense {
+  box-shadow: 
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    inset 0 0 5px var(--neon-blue),
+    inset 0 0 10px var(--neon-blue),
+    var(--text-glow);
+}
+
+/* Neon Glow Effect */
+.neon-glow {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+}
+
+/* Enhanced Neon Glow for important elements */
+.neon-glow-intense {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor,
+    0 0 80px currentColor;
+}
+
+/* Neon Border */
+.neon-border {
+  box-shadow: 
+    0 0 5px #2563eb,
+    0 0 10px #be185d,
+    inset 0 0 5px #2563eb;
+}
+
+/* Enhanced Neon Border for important elements */
+.neon-border-intense {
+  box-shadow: 
+    0 0 5px theme('colors.blue.600'),
+    0 0 10px theme('colors.pink.700'),
+    0 0 20px theme('colors.pink.700'),
+    inset 0 0 5px theme('colors.blue.600'),
+    inset 0 0 10px theme('colors.blue.600');
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+  animation: glitch 1s infinite alternate;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Background Texture */
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/bg-texture.png');
+  background-size: cover;
+}
+
+/* Section Title Background */
+.section-title-bg {
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  background-color: rgba(20, 20, 30, 0.85);
+  border-left: 4px solid theme('colors.purple.800');
+  border-right: 4px solid theme('colors.pink.700');
+  backdrop-filter: blur(5px);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+/* Cyberpunk Grid Lines */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(157, 23, 77, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 23, 77, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center center;
+}
+
+/* Cyberpunk Button */
+.cyber-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid currentColor;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  transition: all 0.6s ease;
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+/* Digital Noise Animation */
+.digital-noise {
+  position: relative;
+}
+
+.digital-noise::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Cyberpunk Section Divider */
+.cyber-divider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    theme('colors.pink.700'),
+    theme('colors.blue.600'),
+    theme('colors.purple.800'),
+    transparent
+  );
+  margin: 2rem 0;
+}
+
+/* Cyberpunk Card */
+.cyber-card {
+  position: relative;
+  border: 1px solid #be185d;
+  background: rgba(13, 17, 23, 0.8);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    theme('colors.blue.600'),
+    theme('colors.pink.700'),
+    theme('colors.purple.800')
+  );
+}
+
+/* Swipeable Cards Container */
+.swipeable-container {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.swipeable-container:active {
+  cursor: grabbing;
+}
+
+.swipeable-track {
+  display: flex;
+  transition: transform 0.3s ease-out;
+}
+
+.swipeable-card {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 350px;
+  margin-right: 20px;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.swipeable-card.active {
+  transform: scale(1);
+}
+
+/* Card Carousel - Slider Style */
+.card-carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  perspective: 1000px;
+  overflow: visible !important;
+  padding-bottom: 100px; /* Add space for the navigation buttons */
+  margin-bottom: 30px;
+}
+
+.card-carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  transform-style: preserve-3d;
+}
+
+.carousel-card {
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%) scale(0.8);
+  transition: all 0.5s ease-out;
+  opacity: 0.6;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel-card.active {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  z-index: 5;
+}
+
+.carousel-card.prev {
+  transform: translateX(-120%) scale(0.8) rotateY(5deg);
+  z-index: 4;
+}
+
+.carousel-card.next {
+  transform: translateX(20%) scale(0.8) rotateY(-5deg);
+  z-index: 4;
+}
+
+.carousel-card.prev2 {
+  transform: translateX(-180%) scale(0.7) rotateY(10deg);
+  opacity: 0.3;
+  z-index: 3;
+}
+
+.carousel-card.next2 {
+  transform: translateX(80%) scale(0.7) rotateY(-10deg);
+  opacity: 0.3;
+  z-index: 3;
+}
+
+.carousel-card:hover {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.7), 0 0 30px rgba(236, 72, 153, 0.5);
+  z-index: 10;
+  transition: all 0.3s ease-out;
+}
+
+@media (min-width: 769px) {
+  .carousel-card:hover {
+    transform: translateX(-50%) scale(1.05);
+    animation: card-pop 0.3s forwards;
+  }
+}
+
+.carousel-card.active:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.carousel-card.prev:hover {
+  transform: translateX(-120%) scale(0.85) rotateY(5deg);
+}
+
+.carousel-card.next:hover {
+  transform: translateX(20%) scale(0.85) rotateY(-5deg);
+}
+
+.carousel-card.prev2:hover {
+  transform: translateX(-180%) scale(0.75) rotateY(10deg);
+}
+
+.carousel-card.next2:hover {
+  transform: translateX(80%) scale(0.75) rotateY(-10deg);
+}
+
+.carousel-card-content {
+  background-color: rgba(17, 24, 39, 0.9);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  height: 100%;
+  overflow-y: auto;
+  max-height: 500px;
+  transition: all 0.3s ease;
+}
+
+.carousel-card:hover .carousel-card-content {
+  border-color: rgba(236, 72, 153, 0.6);
+  background-color: rgba(17, 24, 39, 0.95);
+  transform: translateY(-10px);
+}
+
+/* Card carousel base styles */
+.card-carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.card-carousel {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card {
+  flex: 0 0 100%;
+  background: rgba(15, 23, 42, 0.8);
+  border: 2px solid #be185d;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 0.5rem;
+  box-shadow: 0 0 15px rgba(219, 39, 119, 0.5);
+  transition: all 0.3s ease;
+}
+
+.carousel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(219, 39, 119, 0.8);
+}
+
+.carousel-card-content {
+  height: 100%;
+}
+
+/* Card Pop Animation */
+@keyframes card-pop {
+  0% {
+    transform: translateX(-50%) scale(1.05);
+  }
+  40% {
+    transform: translateX(-50%) scale(1.08);
+  }
+  60% {
+    transform: translateX(-50%) scale(1.06);
+  }
+  80% {
+    transform: translateX(-50%) scale(1.07);
+  }
+  100% {
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+/* Specific animations for different card positions */
+@keyframes card-pop-active {
+  0% {
+    transform: translateX(-50%) scale(1.05);
+  }
+  40% {
+    transform: translateX(-50%) scale(1.08);
+  }
+  60% {
+    transform: translateX(-50%) scale(1.06);
+  }
+  80% {
+    transform: translateX(-50%) scale(1.07);
+  }
+  100% {
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+@keyframes card-pop-prev {
+  0% {
+    transform: translateX(-120%) scale(0.85) rotateY(5deg);
+  }
+  40% {
+    transform: translateX(-120%) scale(0.88) rotateY(5deg);
+  }
+  60% {
+    transform: translateX(-120%) scale(0.86) rotateY(5deg);
+  }
+  80% {
+    transform: translateX(-120%) scale(0.87) rotateY(5deg);
+  }
+  100% {
+    transform: translateX(-120%) scale(0.85) rotateY(5deg);
+  }
+}
+
+@keyframes card-pop-next {
+  0% {
+    transform: translateX(20%) scale(0.85) rotateY(-5deg);
+  }
+  40% {
+    transform: translateX(20%) scale(0.88) rotateY(-5deg);
+  }
+  60% {
+    transform: translateX(20%) scale(0.86) rotateY(-5deg);
+  }
+  80% {
+    transform: translateX(20%) scale(0.87) rotateY(-5deg);
+  }
+  100% {
+    transform: translateX(20%) scale(0.85) rotateY(-5deg);
+  }
+}
+
+.carousel-card.active:hover {
+  animation: card-pop-active 0.3s forwards;
+}
+
+.carousel-card.prev:hover {
+  animation: card-pop-prev 0.3s forwards;
+}
+
+.carousel-card.next:hover {
+  animation: card-pop-next 0.3s forwards;
+}
+
+/* Carousel Navigation */
+.carousel-nav {
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 100;
+  margin-top: 30px;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.carousel-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(30, 30, 40, 0.8);
+  border: 2px solid var(--neon-purple);
+  color: var(--neon-pink);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.carousel-nav-btn:hover {
+  background-color: rgba(60, 60, 80, 0.9);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+.carousel-nav-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Scrollbar styling for card content */
+.carousel-card-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.carousel-card-content::-webkit-scrollbar-track {
+  background: rgba(30, 30, 40, 0.5);
+}
+
+.carousel-card-content::-webkit-scrollbar-thumb {
+  background: #5B21B6;
+  border-radius: 5px;
+}
+
+/* Add some drag effect styles */
+.card-carousel-container.dragging-prev .carousel-card {
+  transform: translateX(calc(var(--transform-x) + 20px)) var(--transform-rest);
+}
+
+.card-carousel-container.dragging-next .carousel-card {
+  transform: translateX(calc(var(--transform-x) - 20px)) var(--transform-rest);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #be185d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Terminal styling */
+.terminal {
+  font-family: 'Roboto Mono', monospace;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #4ade80;
+  padding: 1rem;
+  border: 1px solid #be185d;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.terminal-circle-red { background-color: #ef4444; }
+.terminal-circle-yellow { background-color: #eab308; }
+.terminal-circle-green { background-color: #4ade80; }
+
+.terminal-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.terminal-content {
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.terminal-line {
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+.terminal-prompt {
+  color: #be185d;
+  margin-right: 0.5rem;
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  outline: none;
+  width: 100%;
+}
+
+/* Cyberpunk text highlight */
+::selection {
+  background-color: #be185d;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* Navigation Menu Toggle */
+.mobile-menu-toggle {
+  display: block;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--neon-pink);
+  z-index: 20;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background-color: rgba(17, 24, 39, 0.7);
+  border-radius: 5px;
+  border: 1px solid var(--neon-pink);
+  box-shadow: 0 0 10px rgba(219, 39, 119, 0.5);
+}
+
+.mobile-menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 6px auto;
+  background-color: var(--neon-pink);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(219, 39, 119, 0.9);
+  border-radius: 2px;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  height: 100vh;
+  background-color: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 15;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 2px solid var(--neon-blue);
+  box-shadow: -5px 0 15px rgba(96, 165, 250, 0.3);
+  padding-top: 60px;
+  overflow-y: auto;
+  visibility: hidden;
+}
+
+.mobile-menu.active {
+  right: 0;
+  visibility: visible;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 105, 180, 0.3);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+.mobile-menu a:hover {
+  background-color: rgba(255, 105, 180, 0.2);
+  color: var(--neon-blue);
+  transform: translateX(5px);
+  box-shadow: -3px 0 10px rgba(96, 165, 250, 0.5);
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  /* Responsive styles for card carousel */
+  .card-carousel-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem;
+  }
+  
+  .card-carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .carousel-card {
+    flex: 0 0 85%;
+    max-width: 85%;
+    scroll-snap-align: start;
+  }
+  
+  /* Responsive styles for terminal */
+  #terminal-container {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: hidden;
+  }
+  
+  .terminal {
+    font-size: 14px;
+    padding: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .terminal-content {
+    min-height: 150px;
+    max-height: 300px;
+    width: 100%;
+  }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  p { font-size: 1rem; }
+  .terminal {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    min-width: 0;
+    max-width: 100vw;
+    border-radius: 2px;
+  }
+  .terminal-input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    min-width: 0;
+    max-width: 100vw;
+  }
+  .terminal-header, .terminal-title {
+    font-size: 0.7rem;
+  }
+  .terminal-content {
+    min-height: 120px;
+    max-height: 220px;
+  }
+  /* Preserve card carousel effects on mobile */
+  .card-carousel-container {
+    padding-bottom: 100px;
+  }
+  
+  /* No need to show/hide menu toggle as it's always visible now */
+  
+  /* Desktop menu is removed from HTML */
+}
+
+@media (max-width: 768px) {
+  .card-carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 10px 0;
+    height: auto !important;
+    transform-style: flat !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    gap: 15px;
+  }
+  
+  .card-carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+  
+  .carousel-card {
+    flex: 0 0 85%;
+    margin-right: 15px;
+    scroll-snap-align: center;
+    position: relative !important;
+    left: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    height: auto !important;
+    min-height: 350px;
+    max-height: none;
+  }
+  
+  .carousel-card.active {
+    box-shadow: 0 0 15px rgba(157, 23, 77, 0.7);
+  }
+  
+  .carousel-card-content {
+    height: 100%;
+    max-height: none;
+    overflow-y: visible;
+  }
+  
+  .terminal {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+    max-width: 98vw;
+  }
+  .terminal-input {
+    font-size: 1.1rem;
+    padding: 0.6rem;
+    max-width: 98vw;
+  }
+  /* Adjust carousel for tablets while preserving effects */
+  .card-carousel {
+    height: 550px;
+  }
+  .carousel-card {
+    max-width: 450px;
+  }
+}
+
+/* Utility: Touch-friendly tap targets */
+.touch-friendly {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+/* Accessibility focus styles */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 2px solid theme('colors.pink.700');
+  outline-offset: 2px;
+}

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Website Development Services | Matthew Kobilan</title>
+  <meta name="description" content="Expert website development services for businesses and individuals. Custom websites, e-commerce solutions, and Web3 integration. Get a quote today.">
+  <meta name="keywords" content="website development, web design, custom websites, responsive design, e-commerce, Web3, business websites">
+  <meta name="author" content="Matthew Kobilan">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Professional Website Development Services | Matthew Kobilan">
+  <meta property="og:description" content="Expert website development services for businesses and individuals. Custom websites, e-commerce solutions, and Web3 integration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://matthewkobilan.com/website-development.html">
+  <meta property="og:image" content="https://matthewkobilan.com/assets/images/website-dev-og.jpg">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://matthewkobilan.com/website-development.html">
+  
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <!-- Structured Data for Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Website Development",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Matthew Kobilan Web Development",
+      "url": "https://matthewkobilan.com"
+    },
+    "description": "Professional website development services for businesses and individuals. Custom websites, e-commerce solutions, and Web3 integration.",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "Custom pricing based on project requirements",
+        "priceCurrency": "USD"
+      }
+    }
+  }
+  </script>
+  <style>
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .card-pop {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .card-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(255, 105, 180, 0.7);
+      border-color: #60A5FA;
+    }
+    .text-pop {
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .text-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 3px rgba(255, 105, 180, 0.5);
+      border-color: #60A5FA;
+    }
+  </style>
+</head>
+<body class="text-white font-['Roboto_Mono']">
+  <!-- Full-page background video -->
+  <video id="background-video" autoplay loop muted playsinline>
+    <source src="assets/videos/galaxies.mp4" type="video/mp4">
+    <img src="assets/images/bg-texture.png" alt="Fallback Background" width="1920" height="1080" class="w-full h-full object-cover">
+  </video>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 py-4">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold text-pink-500 neon-glow">Matthew Kobilan</a>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html#services" class="text-blue-400 hover:text-pink-400 transition">Services</a>
+          <a href="index.html#portfolio" class="text-blue-400 hover:text-pink-400 transition">Portfolio</a>
+          <a href="index.html#pricing" class="text-blue-400 hover:text-pink-400 transition">Pricing</a>
+          <a href="index.html#contact" class="text-blue-400 hover:text-pink-400 transition">Contact</a>
+          <a href="creators.html" class="text-blue-400 hover:text-pink-400 transition">For Creators</a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-blue-400 hover:text-pink-400 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden mt-4 flex flex-col space-y-4">
+        <a href="index.html#services" class="text-blue-400 hover:text-pink-400 transition">Services</a>
+        <a href="index.html#portfolio" class="text-blue-400 hover:text-pink-400 transition">Portfolio</a>
+        <a href="index.html#pricing" class="text-blue-400 hover:text-pink-400 transition">Pricing</a>
+        <a href="index.html#contact" class="text-blue-400 hover:text-pink-400 transition">Contact</a>
+        <a href="creators.html" class="text-blue-400 hover:text-pink-400 transition">For Creators</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex items-center justify-center bg-transparent pt-20">
+      <div class="text-center max-w-4xl mx-auto px-4">
+        <h1 class="text-4xl md:text-6xl font-bold font-['Audiowide'] text-blue-600 neon-glow text-stroke-red text-pop mb-6 block glitch-effect section-title-bg" data-text="Website Development">Website Development</h1>
+        <p class="text-xl text-pink-300 mb-8">Custom, responsive websites designed to grow your business and impress your visitors.</p>
+        <a href="#contact-form" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition neon-border cyber-button text-lg">Get a Free Quote</a>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="development-services" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold neon-glow text-purple-800 border-4 border-purple-800 text-pop glitch-text section-title-bg text-center mb-12" data-text="Website Services">Website Services</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">💻</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Custom Website Design</h3>
+            <p class="text-lg">
+              Unique, eye-catching designs tailored to your brand identity and business goals. Stand out from the competition with a website that captures your vision.
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li>✓ Responsive design for all devices</li>
+              <li>✓ Unique visual identity</li>
+              <li>✓ User-focused interfaces</li>
+              <li>✓ Optimized for conversions</li>
+            </ul>
+          </div>
+          
+          <!-- Service 2 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">🛒</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">E-Commerce Solutions</h3>
+            <p class="text-lg">
+              Turn your website into a powerful sales tool with secure, user-friendly e-commerce functionality. Sell products or services directly to your customers.
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li>✓ Secure payment processing</li>
+              <li>✓ Inventory management</li>
+              <li>✓ Customer accounts</li>
+              <li>✓ Order tracking systems</li>
+            </ul>
+          </div>
+          
+          <!-- Service 3 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">🔒</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Security & Performance</h3>
+            <p class="text-lg">
+              Fast, secure websites that protect your data and provide an excellent user experience. Optimized for speed and security.
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li>✓ SSL encryption</li>
+              <li>✓ Performance optimization</li>
+              <li>✓ Regular security updates</li>
+              <li>✓ Data protection compliance</li>
+            </ul>
+          </div>
+          
+          <!-- Service 4 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">🔗</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Web3 Integration</h3>
+            <p class="text-lg">
+              Future-proof your business with blockchain technology integration, NFT capabilities, and crypto payment options.
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li>✓ Cryptocurrency payments</li>
+              <li>✓ NFT minting and galleries</li>
+              <li>✓ Smart contract integration</li>
+              <li>✓ Decentralized applications</li>
+            </ul>
+          </div>
+          
+          <!-- Service 5 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">📱</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Mobile App Development</h3>
+            <p class="text-lg">
+              Extend your web presence with custom mobile applications for iOS and Android. Create a seamless experience across all devices.
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li>✓ Native iOS & Android apps</li>
+              <li>✓ Cross-platform solutions</li>
+              <li>✓ Progressive Web Apps</li>
+              <li>✓ App Store submission</li>
+            </ul>
+          </div>
+          
+          <!-- Service 6 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">🔍</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">SEO & Marketing</h3>
+            <p class="text-lg">
+              Get found online with search engine optimization and digital marketing strategies that drive traffic and conversions.
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li>✓ Search engine optimization</li>
+              <li>✓ Content strategy</li>
+              <li>✓ Analytics integration</li>
+              <li>✓ Conversion optimization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-pink-700 border-4 border-blue-600 text-pop glitch-text section-title-bg mb-12" data-text="Development Process">Development Process</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Step 1 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">1</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Discovery</h3>
+            <p class="text-lg">
+              We'll discuss your goals, target audience, and project requirements to create a clear roadmap for your website.
+            </p>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">2</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Design</h3>
+            <p class="text-lg">
+              I'll create wireframes and visual designs for your approval, ensuring the look and feel matches your brand.
+            </p>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">3</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Development</h3>
+            <p class="text-lg">
+              Your website will be built with clean, efficient code and all the features we've agreed upon.
+            </p>
+          </div>
+          
+          <!-- Step 4 -->
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border card-pop animate-on-scroll">
+            <div class="text-4xl text-blue-600 neon-glow mb-4">4</div>
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop mb-4">Launch & Support</h3>
+            <p class="text-lg">
+              After thorough testing, your site goes live with ongoing support to ensure everything runs smoothly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 border-4 border-purple-800 text-pop glitch-text section-title-bg text-center mb-12" data-text="FAQ">Frequently Asked Questions</h2>
+        
+        <div class="max-w-3xl mx-auto">
+          <div class="mb-8 bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border animate-on-scroll">
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow mb-4">How long does it take to build a website?</h3>
+            <p class="text-lg">
+              The timeline varies depending on the complexity of your project. A basic website might take 2-4 weeks, while more complex projects with custom functionality can take 6-12 weeks. During our initial consultation, I'll provide a more specific timeline based on your requirements.
+            </p>
+          </div>
+          
+          <div class="mb-8 bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border animate-on-scroll">
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow mb-4">How much does a website cost?</h3>
+            <p class="text-lg">
+              Pricing varies based on your specific needs, project complexity, and timeline. I offer custom quotes tailored to each project rather than fixed packages. This ensures you get exactly what you need without paying for unnecessary features. Contact me for a personalized quote.
+            </p>
+          </div>
+          
+          <div class="mb-8 bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border animate-on-scroll">
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow mb-4">Will my website be mobile-friendly?</h3>
+            <p class="text-lg">
+              Absolutely! All websites I build are fully responsive and optimized for all devices, including smartphones, tablets, laptops, and desktop computers. This ensures your visitors have a great experience no matter how they access your site.
+            </p>
+          </div>
+          
+          <div class="mb-8 bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border animate-on-scroll">
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow mb-4">Do you offer website maintenance?</h3>
+            <p class="text-lg">
+              Yes, I offer ongoing maintenance and support packages to keep your website secure, up-to-date, and running smoothly. This includes regular updates, security monitoring, performance optimization, and content updates as needed.
+            </p>
+          </div>
+          
+          <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg neon-border animate-on-scroll">
+            <h3 class="text-2xl font-bold text-pink-700 neon-glow mb-4">Can you help with SEO?</h3>
+            <p class="text-lg">
+              Yes, all websites I build include basic SEO optimization to help you rank better in search engines. I also offer more comprehensive SEO services including keyword research, content optimization, technical SEO, and ongoing optimization strategies.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact-form" class="py-20 bg-transparent">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold neon-glow text-blue-600 glitch-text section-title-bg mb-8" data-text="Get a Quote">Get a Quote</h2>
+        <p class="text-xl text-pink-300 mb-8">Ready to discuss your project? Fill out the form below and I'll get back to you within 24 hours.</p>
+        
+        <form class="max-w-lg mx-auto animate-on-scroll">
+          <input type="text" name="name" placeholder="Your Name" class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
+          <input type="email" name="email" placeholder="Your Email" class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
+          <select name="service" class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
+            <option value="" disabled selected>Select Service</option>
+            <option value="custom-website">Custom Website</option>
+            <option value="e-commerce">E-Commerce Website</option>
+            <option value="web3">Web3 Integration</option>
+            <option value="mobile-app">Mobile App Development</option>
+            <option value="seo">SEO & Marketing</option>
+            <option value="other">Other</option>
+          </select>
+          <textarea name="message" placeholder="Tell me about your project" class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" rows="5" required></textarea>
+          <button type="submit" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 bg-opacity-80 py-8 text-center">
+    <div class="container mx-auto px-4">
+      <p class="text-xl font-bold neon-glow text-pink-500 mb-4">Matthew Kobilan</p>
+      <p class="text-lg text-blue-400 mb-4">info@matthewkobilan.com</p>
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://x.com/matthewkobilan" target="_blank" class="text-blue-400 hover:text-pink-400 transition">Twitter</a>
+        <a href="https://www.linkedin.com/in/matthew-kobilan/" target="_blank" class="text-blue-400 hover:text-pink-400 transition">LinkedIn</a>
+        <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" class="text-blue-400 hover:text-pink-400 transition">YouTube</a>
+        <a href="creators.html" class="text-blue-400 hover:text-pink-400 transition">For Creators</a>
+      </div>
+      <p class="text-sm text-gray-400">© 2025 Matthew Kobilan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/interactive.js"></script>
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Force scroll to top on page load
+    window.onbeforeunload = function() {
+      window.scrollTo(0, 0);
+    };
+    
+    // Scroll animations
+    function observeElements() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.animate-on-scroll').forEach(element => {
+        observer.observe(element);
+      });
+    }
+    
+    window.addEventListener('load', observeElements);
+  </script>
+</body>
+</html>

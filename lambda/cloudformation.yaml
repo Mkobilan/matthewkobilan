@@ -1,0 +1,272 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS CloudFormation Template for Matthew Kobilan Website Lambda Functions'
+
+Parameters:
+  DomainName:
+    Type: String
+    Description: The domain name for the website
+    Default: matthewkobilan.com
+
+Resources:
+  # DynamoDB table for contact form submissions
+  ContactFormTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub '${DomainName}-contact-form'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      Tags:
+        - Key: Project
+          Value: MatthewKobilanWebsite
+
+  # IAM role for Lambda function
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: DynamoDBAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'dynamodb:PutItem'
+                Resource: !GetAtt ContactFormTable.Arn
+        - PolicyName: SESAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'ses:SendEmail'
+                  - 'ses:SendRawEmail'
+                Resource: '*'
+
+  # Lambda function for contact form
+  ContactFormFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub '${DomainName}-contact-form-handler'
+      Handler: contact-form-handler.handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Runtime: nodejs16.x
+      Timeout: 10
+      MemorySize: 128
+      Environment:
+        Variables:
+          CONTACT_FORM_TABLE: !Ref ContactFormTable
+      Code:
+        ZipFile: |
+          const AWS = require('aws-sdk');
+          const ses = new AWS.SES({ region: 'us-east-1' });
+
+          exports.handler = async (event) => {
+            try {
+              // Parse the incoming request body
+              const body = JSON.parse(event.body);
+              
+              // Validate required fields
+              if (!body.name || !body.email || !body.message) {
+                return {
+                  statusCode: 400,
+                  headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ message: 'Name, email, and message are required fields' })
+                };
+              }
+              
+              // Validate email format
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(body.email)) {
+                return {
+                  statusCode: 400,
+                  headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ message: 'Invalid email format' })
+                };
+              }
+              
+              // Prepare email parameters
+              const params = {
+                Destination: {
+                  ToAddresses: ['info@matthewkobilan.com']
+                },
+                Message: {
+                  Body: {
+                    Text: {
+                      Data: `Name: ${body.name}\nEmail: ${body.email}\nMessage: ${body.message}`
+                    }
+                  },
+                  Subject: {
+                    Data: 'New Contact Form Submission'
+                  }
+                },
+                Source: 'no-reply@matthewkobilan.com'
+              };
+              
+              // Send email
+              await ses.sendEmail(params).promise();
+              
+              // Store in DynamoDB for record keeping
+              const dynamoDB = new AWS.DynamoDB.DocumentClient();
+              await dynamoDB.put({
+                TableName: process.env.CONTACT_FORM_TABLE,
+                Item: {
+                  id: `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`,
+                  name: body.name,
+                  email: body.email,
+                  message: body.message,
+                  timestamp: new Date().toISOString()
+                }
+              }).promise();
+              
+              return {
+                statusCode: 200,
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: 'Form submitted successfully' })
+              };
+            } catch (error) {
+              console.error('Error processing form submission:', error);
+              
+              return {
+                statusCode: 500,
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: 'Error processing your request' })
+              };
+            }
+          };
+      Tags:
+        - Key: Project
+          Value: MatthewKobilanWebsite
+
+  # API Gateway REST API
+  ContactFormApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: !Sub '${DomainName}-contact-form-api'
+      Description: 'API for contact form submissions'
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+      Tags:
+        - Key: Project
+          Value: MatthewKobilanWebsite
+
+  # API Gateway resource
+  ContactFormResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      ParentId: !GetAtt ContactFormApi.RootResourceId
+      PathPart: 'contact'
+
+  # API Gateway method
+  ContactFormMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      ResourceId: !Ref ContactFormResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ContactFormFunction.Arn}/invocations'
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+        - StatusCode: 400
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+        - StatusCode: 500
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # API Gateway OPTIONS method for CORS
+  ContactFormOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      ResourceId: !Ref ContactFormResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ''
+        PassthroughBehavior: WHEN_NO_MATCH
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # API Gateway deployment
+  ApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - ContactFormMethod
+      - ContactFormOptionsMethod
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      StageName: 'prod'
+
+  # Lambda permission for API Gateway
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !Ref ContactFormFunction
+      Principal: 'apigateway.amazonaws.com'
+      SourceArn: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ContactFormApi}/*/POST/contact'
+
+Outputs:
+  ApiEndpoint:
+    Description: 'API Gateway endpoint URL for prod stage'
+    Value: !Sub 'https://${ContactFormApi}.execute-api.${AWS::Region}.amazonaws.com/prod/contact'
+
+  ContactFormTableName:
+    Description: 'Name of DynamoDB table for contact form submissions'
+    Value: !Ref ContactFormTable

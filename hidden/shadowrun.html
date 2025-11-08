@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeonForge Market - Classified</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>
+    body {
+      background: url('../assets/images/serverroom.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto Mono', monospace;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: rgba(15, 20, 25, 0.9);
+      border: 2px solid #ff69b4;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+      backdrop-filter: blur(5px);
+      position: relative;
+      padding: 2rem;
+    }
+    .matrix-rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Roboto Mono', monospace;
+      color: #48bb78;
+      font-size: 16px;
+      line-height: 1.2;
+      overflow: hidden;
+      z-index: 0;
+      opacity: 0.5;
+    }
+    .matrix-rain span {
+      position: absolute;
+      white-space: pre;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #ff69b4;
+      text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4;
+      animation: glitch-text 2s infinite;
+    }
+    @keyframes glitch-text {
+      0% { transform: translate(0); }
+      10% { transform: translate(-2px, 2px); }
+      20% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    .classified-stamp {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: #ff0000;
+      font-size: 1.5rem;
+      transform: rotate(-15deg);
+      opacity: 0.7;
+      text-transform: uppercase;
+      border: 2px solid #ff0000;
+      padding: 0.5rem;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 0.7; }
+      50% { opacity: 0.3; }
+      100% { opacity: 0.7; }
+    }
+    .nft-listing {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .nft-card {
+      flex: 1;
+      background: rgba(30, 30, 50, 0.8);
+      border: 1px solid #60A5FA;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .nft-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #60A5FA;
+    }
+    .nft-card img {
+      max-width: 100%;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .sold-out {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      color: #ff0000;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 0.5rem 1rem;
+      border: 2px solid #ff0000;
+      animation: flicker 0.5s infinite;
+    }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    .redacted {
+      background: #000000;
+      color: #000000;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .redacted:hover {
+      color: #ff69b4;
+    }
+    .call-to-action {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .call-to-action a {
+      display: inline-block;
+      background: #60A5FA;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .call-to-action a:hover {
+      background: #ff69b4;
+    }
+  </style>
+</head>
+<body class="font-['Roboto_Mono'] text-white">
+  <div class="matrix-rain"></div>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <h1 class="neon-glow glitch-effect" data-text="NeonForge Market">NeonForge Market</h1>
+        <p class="text-blue-400">Classified Project // Shadowrun Protocol</p>
+        <div class="classified-stamp">CLASSIFIED</div>
+      </div>
+      <div class="nft-listing">
+        <div class="nft-card">
+          <img src="../assets/images/gridhacker.jpg" alt="NeonForge NFT">
+          <h3 class="text-pink-500">NeonForge VIP Pass</h3>
+          <p>Price: <span class="redacted">0.5 ETH</span></p>
+          <p>Status: <span class="text-green-400">Sold Out</span></p>
+          <div class="sold-out">SOLD OUT</div>
+        </div>
+        <div class="nft-card">
+          <img src="../assets/images/gridhacker.jpg" alt="NeonForge NFT">
+          <h3 class="text-pink-500">CyberSmith Collectible</h3>
+          <p>Price: <span class="redacted">1.2 ETH</span></p>
+          <p>Status: <span class="text-green-400">Sold Out</span></p>
+          <div class="sold-out">SOLD OUT</div>
+        </div>
+        <div class="nft-card">
+          <img src="../assets/images/gridhacker.jpg" alt="NeonForge NFT">
+          <h3 class="text-pink-500">GridRunner Token</h3>
+          <p>Price: <span class="redacted">0.8 ETH</span></p>
+          <p>Status: <span class="text-green-400">Sold Out</span></p>
+          <div class="sold-out">SOLD OUT</div>
+        </div>
+      </div>
+      <div class="project-details">
+        <p class="text-blue-400 text-center mb-2">[SYSTEM MESSAGE]</p>
+        <p class="text-center">NeonForge Market is a stealth-mode NFT marketplace operating on the <span class="redacted">Solana</span> blockchain. Features include:</p>
+        <ul class="list-disc pl-5 mx-auto max-w-md mt-2 mb-4">
+          <li>Zero-fee trading for <span class="redacted">[REDACTED]</span> users</li>
+          <li>Exclusive drops with <span class="redacted">[REDACTED]</span> artists</li>
+          <li>Integrated <span class="redacted">[REDACTED]</span> wallet support</li>
+          <li>Dark pool auctions for high-value assets</li>
+        </ul>
+        <p class="text-center text-pink-300 blink-text">This project is in stealth mode. Contact the developer to learn more.</p>
+      </div>
+      <div class="call-to-action">
+        <a href="/#contact" class="cyber-button">Access Classified Intel</a>
+      </div>
+    </div>
+  </div>
+  <audio id="hover-sound" src="../assets/audio/typing.wav" preload="auto"></audio>
+  <audio id="click-sound" src="../assets/audio/success.mp3" preload="auto"></audio>
+  <script>
+    // Matrix rain effect
+    const canvas = document.querySelector('.matrix-rain');
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
+    const fontSize = 16;
+    const columns = Math.floor(window.innerWidth / fontSize);
+    for (let i = 0; i < columns; i++) {
+      const span = document.createElement('span');
+      span.style.left = `${i * fontSize}px`;
+      span.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      span.style.animationDelay = `${Math.random() * 2}s`;
+      let text = '';
+      for (let j = 0; j < 20; j++) {
+        text += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      span.textContent = text;
+      canvas.appendChild(span);
+    }
+
+    // Audio effects
+    const hoverSound = document.getElementById('hover-sound');
+    const clickSound = document.getElementById('click-sound');
+    document.querySelectorAll('.nft-card, a').forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        hoverSound.play().catch(err => console.error('Hover sound error:', err));
+      });
+      element.addEventListener('click', () => {
+        clickSound.play().catch(err => console.error('Click sound error:', err));
+      });
+    });
+  </script>
+</body>
+</html>

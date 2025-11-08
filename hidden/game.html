@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breach the Grid</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>
+    body {
+      background: url('../assets/images/serverroom.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .terminal-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: rgba(15, 20, 25, 0.9);
+      border: 2px solid #ff69b4;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+      backdrop-filter: blur(5px);
+      position: relative;
+      opacity: 1 !important; /* Ensure visibility */
+      display: block !important; /* Ensure display */
+    }
+    .terminal-output {
+      padding: 1rem;
+      min-height: 200px;
+      max-height: 400px;
+      overflow-y: auto;
+      color: #48bb78;
+      font-size: 14px;
+    }
+    .terminal-input-container {
+      display: flex;
+      padding: 0.5rem;
+      border-top: 1px solid #ff69b4;
+    }
+    .terminal-prompt {
+      color: #ff69b4;
+      margin-right: 0.5rem;
+    }
+    .terminal-input {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      flex-grow: 1;
+      outline: none;
+    }
+    .timer {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: #ff69b4;
+      font-size: 1.5rem;
+      text-shadow: 0 0 5px #ff69b4;
+    }
+    .game-over, .game-won {
+      text-align: center;
+      padding: 2rem;
+      display: none;
+    }
+    .badge {
+      max-width: 200px;
+      margin: 1rem auto;
+      filter: drop-shadow(0 0 10px #ff69b4);
+    }
+  </style>
+</head>
+<body class="font-['Roboto_Mono'] text-white">
+  <div class="terminal-container">
+    <div class="timer">Time: 60s</div>
+    <div class="terminal-output">
+      <p class="text-blue-600">>>> Welcome to Breach the Grid <<<</p>
+      <p>Hack into the megacorp's servers by entering the correct commands.</p>
+      <p>Available commands: <span class="text-pink-700">bypass, override, decrypt, scan, probe, crack</span></p>
+      <p>Layer 1: Enter the command to proceed...</p>
+    </div>
+    <div class="terminal-input-container">
+      <span class="terminal-prompt">hacker@grid:~$ </span>
+      <input type="text" class="terminal-input" autofocus>
+    </div>
+    <div class="game-over">
+      <h2 class="text-3xl font-bold neon-glow glitch-effect" data-text="Access Denied">Access Denied</h2>
+      <p class="mt-4">Time's up. The grid remains secure.</p>
+      <a href="/" class="mt-4 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Return to Grid</a>
+    </div>
+    <div class="game-won">
+      <h2 class="text-3xl font-bold neon-glow glitch-effect" data-text="Access Granted">Access Granted</h2>
+      <p class="mt-4">Achievement Unlocked: Grid Hacker</p>
+      <img src="../assets/images/gridhacker.jpg" alt="Grid Hacker Badge" class="badge" onerror="console.error('Failed to load badge image')">
+      <p class="mt-4">The grid whispers: <span class="text-blue-600">'zerocool'</span>. Try this in the terminal...</p>
+      <a href="/" class="mt-4 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Return to Grid</a>
+    </div>
+  </div>
+  <audio id="typing-sound" src="../assets/audio/typing.wav" preload="auto"></audio>
+  <audio id="success-sound" src="../assets/audio/success.mp3" preload="auto"></audio>
+  <script>
+    console.log('Game script loaded');
+    console.log('Terminal container:', document.querySelector('.terminal-container'));
+
+    const output = document.querySelector('.terminal-output');
+    const input = document.querySelector('.terminal-input');
+    const timerDisplay = document.querySelector('.timer');
+    const gameOver = document.querySelector('.game-over');
+    const gameWon = document.querySelector('.game-won');
+    const typingSound = document.getElementById('typing-sound');
+    const successSound = document.getElementById('success-sound');
+
+    if (!output || !input || !timerDisplay || !gameOver || !gameWon) {
+      console.error('Missing game elements:', { output, input, timerDisplay, gameOver, gameWon });
+    }
+
+    const layers = [
+      { command: 'bypass', message: 'Layer 1 bypassed. Proceed to Layer 2...' },
+      { command: 'override', message: 'Layer 2 overridden. Final Layer awaits...' },
+      { command: 'decrypt', message: 'Layer 3 decrypted. Access granted!' }
+    ];
+    let currentLayer = 0;
+    let timeLeft = 60;
+    let gameActive = true;
+
+    // Timer
+    const timer = setInterval(() => {
+      if (!gameActive) return;
+      timeLeft--;
+      timerDisplay.textContent = `Time: ${timeLeft}s`;
+      if (timeLeft <= 0) {
+        endGame(false);
+      }
+    }, 1000);
+
+    // Input handling
+    input.addEventListener('keydown', (e) => {
+      if (!gameActive) return;
+      if (e.key === 'Enter') {
+        const command = input.value.trim().toLowerCase();
+        input.value = '';
+        if (typingSound) {
+          typingSound.play().catch((err) => console.error('Typing sound error:', err));
+        }
+        output.innerHTML += `<p><span class="text-pink-700">hacker@grid:~$</span> ${command}</p>`;
+        if (command === layers[currentLayer].command) {
+          output.innerHTML += `<p class="text-green-400">${layers[currentLayer].message}</p>`;
+          timeLeft += 5; // Add 5 seconds for correct command
+          output.innerHTML += `<p class="text-green-400">+5s added to timer!</p>`;
+          if (successSound) {
+            successSound.play().catch((err) => console.error('Success sound error:', err));
+          }
+          currentLayer++;
+          if (currentLayer >= layers.length) {
+            endGame(true);
+          } else {
+            output.innerHTML += `<p>Layer ${currentLayer + 1}: Enter the command to proceed...</p>`;
+          }
+        } else {
+          output.innerHTML += `<p class="text-red-500">Invalid command. Try again. (-5s penalty)</p>`;
+          timeLeft = Math.max(0, timeLeft - 5);
+        }
+        output.scrollTop = output.scrollHeight;
+      }
+    });
+
+    function endGame(won) {
+      gameActive = false;
+      clearInterval(timer);
+      input.disabled = true;
+      document.querySelector('.terminal-input-container').style.display = 'none';
+      if (won) {
+        gameWon.style.display = 'block';
+        sessionStorage.setItem('hackerBadge', 'true');
+      } else {
+        gameOver.style.display = 'block';
+      }
+    }
+
+    // Prevent auto-scrolling
+    window.scrollTo(0, 0);
+  </script>
+</body>
+</html>
