@@ -194,11 +194,8 @@
 </head>
 <body class="text-white font-['Roboto_Mono']">
   <!-- Full-page background video -->
-  <video id="background-video" autoplay loop muted playsinline>
-    <source src="assets/videos/galaxies.mp4" type="video/mp4">
-    <!-- Fallback to static image if video fails -->
-    <img src="assets/images/bg-texture.png" alt="Fallback Background" class="w-full h-full object-cover">
-  </video>
+  <!-- Full-page background canvas -->
+  <canvas id="starfield-canvas" class="fixed top-0 left-0 w-full h-full -z-10 bg-black"></canvas>
 
   <!-- Header -->
   <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-10">

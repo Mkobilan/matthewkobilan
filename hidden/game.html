@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
       margin: 0;
       padding: 0;
     }
+
     .terminal-container {
       max-width: 800px;
       margin: 2rem auto;
@@ -25,9 +27,12 @@
       box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
       backdrop-filter: blur(5px);
       position: relative;
-      opacity: 1 !important; /* Ensure visibility */
-      display: block !important; /* Ensure display */
+      opacity: 1 !important;
+      /* Ensure visibility */
+      display: block !important;
+      /* Ensure display */
     }
+
     .terminal-output {
       padding: 1rem;
       min-height: 200px;
@@ -36,15 +41,18 @@
       color: #48bb78;
       font-size: 14px;
     }
+
     .terminal-input-container {
       display: flex;
       padding: 0.5rem;
       border-top: 1px solid #ff69b4;
     }
+
     .terminal-prompt {
       color: #ff69b4;
       margin-right: 0.5rem;
     }
+
     .terminal-input {
       background: transparent;
       border: none;
@@ -52,6 +60,7 @@
       flex-grow: 1;
       outline: none;
     }
+
     .timer {
       position: absolute;
       top: 1rem;
@@ -60,11 +69,14 @@
       font-size: 1.5rem;
       text-shadow: 0 0 5px #ff69b4;
     }
-    .game-over, .game-won {
+
+    .game-over,
+    .game-won {
       text-align: center;
       padding: 2rem;
       display: none;
     }
+
     .badge {
       max-width: 200px;
       margin: 1rem auto;
@@ -72,14 +84,15 @@
     }
   </style>
 </head>
+
 <body class="font-['Roboto_Mono'] text-white">
   <div class="terminal-container">
     <div class="timer">Time: 60s</div>
     <div class="terminal-output">
-      <p class="text-blue-600">>>> Welcome to Breach the Grid <<<</p>
-      <p>Hack into the megacorp's servers by entering the correct commands.</p>
-      <p>Available commands: <span class="text-pink-700">bypass, override, decrypt, scan, probe, crack</span></p>
-      <p>Layer 1: Enter the command to proceed...</p>
+      <p class="text-blue-600">>>> Welcome to Breach the Grid <<<< /p>
+          <p>Hack into the megacorp's servers by entering the correct commands.</p>
+          <p>Available commands: <span class="text-pink-700">bypass, override, decrypt, scan, probe, crack</span></p>
+          <p>Layer 1: Enter the command to proceed...</p>
     </div>
     <div class="terminal-input-container">
       <span class="terminal-prompt">hacker@grid:~$ </span>
@@ -88,33 +101,31 @@
     <div class="game-over">
       <h2 class="text-3xl font-bold neon-glow glitch-effect" data-text="Access Denied">Access Denied</h2>
       <p class="mt-4">Time's up. The grid remains secure.</p>
-      <a href="/" class="mt-4 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Return to Grid</a>
+      <a href="../index.html"
+        class="mt-4 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Return
+        to Grid</a>
     </div>
     <div class="game-won">
       <h2 class="text-3xl font-bold neon-glow glitch-effect" data-text="Access Granted">Access Granted</h2>
       <p class="mt-4">Achievement Unlocked: Grid Hacker</p>
-      <img src="../assets/images/gridhacker.jpg" alt="Grid Hacker Badge" class="badge" onerror="console.error('Failed to load badge image')">
+      <img src="../assets/images/gridhacker.jpg" alt="Grid Hacker Badge" class="badge"
+        onerror="this.style.display='none'">
       <p class="mt-4">The grid whispers: <span class="text-blue-600">'zerocool'</span>. Try this in the terminal...</p>
-      <a href="/" class="mt-4 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Return to Grid</a>
+      <a href="../index.html"
+        class="mt-4 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Return
+        to Grid</a>
     </div>
   </div>
-  <audio id="typing-sound" src="../assets/audio/typing.wav" preload="auto"></audio>
-  <audio id="success-sound" src="../assets/audio/success.mp3" preload="auto"></audio>
+
   <script>
     console.log('Game script loaded');
-    console.log('Terminal container:', document.querySelector('.terminal-container'));
 
     const output = document.querySelector('.terminal-output');
     const input = document.querySelector('.terminal-input');
     const timerDisplay = document.querySelector('.timer');
     const gameOver = document.querySelector('.game-over');
     const gameWon = document.querySelector('.game-won');
-    const typingSound = document.getElementById('typing-sound');
-    const successSound = document.getElementById('success-sound');
-
-    if (!output || !input || !timerDisplay || !gameOver || !gameWon) {
-      console.error('Missing game elements:', { output, input, timerDisplay, gameOver, gameWon });
-    }
+    const inputContainer = document.querySelector('.terminal-input-container');
 
     const layers = [
       { command: 'bypass', message: 'Layer 1 bypassed. Proceed to Layer 2...' },
@@ -141,17 +152,14 @@
       if (e.key === 'Enter') {
         const command = input.value.trim().toLowerCase();
         input.value = '';
-        if (typingSound) {
-          typingSound.play().catch((err) => console.error('Typing sound error:', err));
-        }
+
         output.innerHTML += `<p><span class="text-pink-700">hacker@grid:~$</span> ${command}</p>`;
+
         if (command === layers[currentLayer].command) {
           output.innerHTML += `<p class="text-green-400">${layers[currentLayer].message}</p>`;
           timeLeft += 5; // Add 5 seconds for correct command
           output.innerHTML += `<p class="text-green-400">+5s added to timer!</p>`;
-          if (successSound) {
-            successSound.play().catch((err) => console.error('Success sound error:', err));
-          }
+
           currentLayer++;
           if (currentLayer >= layers.length) {
             endGame(true);
@@ -161,6 +169,7 @@
         } else {
           output.innerHTML += `<p class="text-red-500">Invalid command. Try again. (-5s penalty)</p>`;
           timeLeft = Math.max(0, timeLeft - 5);
+          timerDisplay.textContent = `Time: ${timeLeft}s`;
         }
         output.scrollTop = output.scrollHeight;
       }
@@ -170,7 +179,7 @@
       gameActive = false;
       clearInterval(timer);
       input.disabled = true;
-      document.querySelector('.terminal-input-container').style.display = 'none';
+      inputContainer.style.display = 'none';
       if (won) {
         gameWon.style.display = 'block';
         sessionStorage.setItem('hackerBadge', 'true');
@@ -183,4 +192,5 @@
     window.scrollTo(0, 0);
   </script>
 </body>
+
 </html>

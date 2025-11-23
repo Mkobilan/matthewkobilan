@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
       font-family: 'Roboto Mono', monospace;
       color: #ffffff;
     }
+
     .container {
       max-width: 1000px;
       margin: 2rem auto;
@@ -29,6 +31,7 @@
       position: relative;
       padding: 2rem;
     }
+
     .matrix-rain {
       position: absolute;
       top: 0;
@@ -43,35 +46,58 @@
       z-index: 0;
       opacity: 0.5;
     }
+
     .matrix-rain span {
       position: absolute;
       white-space: pre;
       animation: fall linear infinite;
     }
+
     @keyframes fall {
-      0% { transform: translateY(-100vh); }
-      100% { transform: translateY(100vh); }
+      0% {
+        transform: translateY(-100vh);
+      }
+
+      100% {
+        transform: translateY(100vh);
+      }
     }
+
     .content {
       position: relative;
       z-index: 1;
     }
+
     .header {
       text-align: center;
       margin-bottom: 2rem;
     }
+
     .header h1 {
       font-size: 2.5rem;
       color: #ff69b4;
       text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4;
       animation: glitch-text 2s infinite;
     }
+
     @keyframes glitch-text {
-      0% { transform: translate(0); }
-      10% { transform: translate(-2px, 2px); }
-      20% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
+      0% {
+        transform: translate(0);
+      }
+
+      10% {
+        transform: translate(-2px, 2px);
+      }
+
+      20% {
+        transform: translate(2px, -2px);
+      }
+
+      100% {
+        transform: translate(0);
+      }
     }
+
     .classified-stamp {
       position: absolute;
       top: 1rem;
@@ -85,17 +111,28 @@
       padding: 0.5rem;
       animation: blink 1s infinite;
     }
+
     @keyframes blink {
-      0% { opacity: 0.7; }
-      50% { opacity: 0.3; }
-      100% { opacity: 0.7; }
+      0% {
+        opacity: 0.7;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+
+      100% {
+        opacity: 0.7;
+      }
     }
+
     .nft-listing {
       display: flex;
       justify-content: space-between;
       gap: 2rem;
       margin-bottom: 2rem;
     }
+
     .nft-card {
       flex: 1;
       background: rgba(30, 30, 50, 0.8);
@@ -105,15 +142,18 @@
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
     }
+
     .nft-card:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px #60A5FA;
     }
+
     .nft-card img {
       max-width: 100%;
       border-radius: 4px;
       margin-bottom: 1rem;
     }
+
     .sold-out {
       position: absolute;
       top: 50%;
@@ -128,24 +168,37 @@
       border: 2px solid #ff0000;
       animation: flicker 0.5s infinite;
     }
+
     @keyframes flicker {
-      0% { opacity: 1; }
-      50% { opacity: 0.5; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
+
     .redacted {
       background: #000000;
       color: #000000;
       position: relative;
       transition: color 0.3s;
     }
+
     .redacted:hover {
       color: #ff69b4;
     }
+
     .call-to-action {
       text-align: center;
       margin-top: 2rem;
     }
+
     .call-to-action a {
       display: inline-block;
       background: #60A5FA;
@@ -155,11 +208,13 @@
       text-decoration: none;
       transition: background 0.3s;
     }
+
     .call-to-action a:hover {
       background: #ff69b4;
     }
   </style>
 </head>
+
 <body class="font-['Roboto_Mono'] text-white">
   <div class="matrix-rain"></div>
   <div class="container">
@@ -194,22 +249,22 @@
       </div>
       <div class="project-details">
         <p class="text-blue-400 text-center mb-2">[SYSTEM MESSAGE]</p>
-        <p class="text-center">NeonForge Market is a stealth-mode NFT marketplace operating on the <span class="redacted">Solana</span> blockchain. Features include:</p>
+        <p class="text-center">NeonForge Market is a stealth-mode NFT marketplace operating on the <span
+            class="redacted">Solana</span> blockchain. Features include:</p>
         <ul class="list-disc pl-5 mx-auto max-w-md mt-2 mb-4">
           <li>Zero-fee trading for <span class="redacted">[REDACTED]</span> users</li>
           <li>Exclusive drops with <span class="redacted">[REDACTED]</span> artists</li>
           <li>Integrated <span class="redacted">[REDACTED]</span> wallet support</li>
           <li>Dark pool auctions for high-value assets</li>
         </ul>
-        <p class="text-center text-pink-300 blink-text">This project is in stealth mode. Contact the developer to learn more.</p>
+        <p class="text-center text-pink-300 blink-text">This project is in stealth mode. Contact the developer to learn
+          more.</p>
       </div>
       <div class="call-to-action">
         <a href="/#contact" class="cyber-button">Access Classified Intel</a>
       </div>
     </div>
   </div>
-  <audio id="hover-sound" src="../assets/audio/typing.wav" preload="auto"></audio>
-  <audio id="click-sound" src="../assets/audio/success.mp3" preload="auto"></audio>
   <script>
     // Matrix rain effect
     const canvas = document.querySelector('.matrix-rain');
@@ -228,18 +283,7 @@
       span.textContent = text;
       canvas.appendChild(span);
     }
-
-    // Audio effects
-    const hoverSound = document.getElementById('hover-sound');
-    const clickSound = document.getElementById('click-sound');
-    document.querySelectorAll('.nft-card, a').forEach(element => {
-      element.addEventListener('mouseenter', () => {
-        hoverSound.play().catch(err => console.error('Hover sound error:', err));
-      });
-      element.addEventListener('click', () => {
-        clickSound.play().catch(err => console.error('Click sound error:', err));
-      });
-    });
   </script>
 </body>
+
 </html>

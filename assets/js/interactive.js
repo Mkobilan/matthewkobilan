@@ -1,159 +1,94 @@
 // Interactive elements for Matthew Kobilan's cyberpunk website
-// Particle effects, glitch animations, carousels, and a badass terminal with Neonstorm and Core Breach Protocol
+// Starfield effects, glitch animations, carousels, and a badass terminal with Neonstorm and Core Breach Protocol
 
-// Particle background effect with pulsing for Core Breach
-class ParticleBackground {
+// Starfield Background Effect (Canvas)
+class StarfieldBackground {
   constructor() {
-    this.canvas = document.createElement('canvas');
+    this.canvas = document.getElementById('starfield-canvas');
+    if (!this.canvas) return;
     this.ctx = this.canvas.getContext('2d');
-    this.particles = [];
-    this.mousePosition = { x: 0, y: 0 };
+    this.stars = [];
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
     this.isActive = true;
-    this.isPulsing = false;
-    this.pulseStart = null;
-    
+    this.speed = 0.5;
+    this.warpSpeed = false;
+
     this.init();
   }
-  
+
   init() {
-    this.canvas.id = 'particle-canvas';
-    this.canvas.style.position = 'fixed';
-    this.canvas.style.top = '0';
-    this.canvas.style.left = '0';
-    this.canvas.style.width = '100%';
-    this.canvas.style.height = '100%';
-    this.canvas.style.pointerEvents = 'none';
-    this.canvas.style.zIndex = '1';
-    document.body.appendChild(this.canvas);
-    
     this.resizeCanvas();
     window.addEventListener('resize', () => this.resizeCanvas());
-    
-    document.addEventListener('mousemove', (e) => {
-      this.mousePosition.x = e.clientX;
-      this.mousePosition.y = e.clientY;
-    });
-    
-    this.createParticles();
+    this.createStars();
     this.animate();
   }
-  
+
   resizeCanvas() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
   }
-  
-  createParticles() {
-    this.particles = [];
-    const particleCount = Math.floor(window.innerWidth / 10);
-    
-    for (let i = 0; i < particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        radius: Math.random() * 2 + 1,
-        originalRadius: Math.random() * 2 + 1,
-        color: this.getRandomColor(),
-        velocity: {
-          x: (Math.random() - 0.5) * 0.5,
-          y: (Math.random() - 0.5) * 0.5
-        },
-        opacity: Math.random() * 0.5 + 0.2
+
+  createStars() {
+    this.stars = [];
+    const starCount = Math.floor((this.width * this.height) / 2000); // Density
+
+    for (let i = 0; i < starCount; i++) {
+      this.stars.push({
+        x: Math.random() * this.width,
+        y: Math.random() * this.height,
+        z: Math.random() * this.width, // Depth
+        size: Math.random() * 1.5,
+        color: this.getRandomColor()
       });
     }
   }
-  
+
   getRandomColor() {
-    const colors = [
-      'rgba(157, 23, 77, alpha)',
-      'rgba(37, 99, 235, alpha)',
-      'rgba(126, 34, 206, alpha)',
-      'rgba(107, 33, 168, alpha)'
-    ];
+    const colors = ['#ffffff', '#ffe9c4', '#d4fbff']; // White, yellowish, bluish
     return colors[Math.floor(Math.random() * colors.length)];
   }
-  
+
   animate() {
     if (!this.isActive) return;
-    
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    const now = Date.now();
-    
-    this.particles.forEach(particle => {
-      particle.x += particle.velocity.x;
-      particle.y += particle.velocity.y;
-      
-      if (particle.x < 0) particle.x = this.canvas.width;
-      if (particle.x > this.canvas.width) particle.x = 0;
-      if (particle.y < 0) particle.y = this.canvas.height;
-      if (particle.y > this.canvas.height) particle.y = 0;
-      
-      const dx = this.mousePosition.x - particle.x;
-      const dy = this.mousePosition.y - particle.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      if (distance < 100) {
-        const angle = Math.atan2(dy, dx);
-        const force = (100 - distance) / 100;
-        particle.velocity.x -= Math.cos(angle) * force * 0.2;
-        particle.velocity.y -= Math.sin(angle) * force * 0.2;
+
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; // Trail effect
+    this.ctx.fillRect(0, 0, this.width, this.height);
+
+    const cx = this.width / 2;
+    const cy = this.height / 2;
+
+    this.stars.forEach(star => {
+      // Move star closer
+      star.z -= this.warpSpeed ? 20 : this.speed;
+
+      // Reset star if it passes screen
+      if (star.z <= 0) {
+        star.z = this.width;
+        star.x = Math.random() * this.width;
+        star.y = Math.random() * this.height;
       }
-      
-      let currentRadius = particle.originalRadius;
-      let currentColor = particle.color;
-      
-      if (this.isPulsing && this.pulseStart) {
-        const pulseProgress = (now - this.pulseStart) % 2000;
-        if (pulseProgress < 500) {
-          const scale = 1 + (pulseProgress / 500) * 0.5;
-          currentRadius = particle.originalRadius * scale;
-          currentColor = 'rgba(72, 187, 120, alpha)';
-        }
+
+      // Project 3D coordinates to 2D
+      const x = (star.x - cx) * (this.width / star.z) + cx;
+      const y = (star.y - cy) * (this.width / star.z) + cy;
+      const size = (1 - star.z / this.width) * star.size * (this.warpSpeed ? 3 : 1);
+
+      if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
+        this.ctx.beginPath();
+        this.ctx.fillStyle = star.color;
+        this.ctx.arc(x, y, size, 0, Math.PI * 2);
+        this.ctx.fill();
       }
-      
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, currentRadius, 0, Math.PI * 2);
-      this.ctx.fillStyle = currentColor.replace('alpha', particle.opacity);
-      this.ctx.fill();
     });
-    
-    this.connectParticles();
+
     requestAnimationFrame(() => this.animate());
   }
-  
-  connectParticles() {
-    for (let i = 0; i < this.particles.length; i++) {
-      for (let j = i + 1; j < this.particles.length; j++) {
-        const dx = this.particles[i].x - this.particles[j].x;
-        const dy = this.particles[i].y - this.particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 100) {
-          this.ctx.beginPath();
-          this.ctx.strokeStyle = `rgba(255, 255, 255, ${(100 - distance) / 500})`;
-          this.ctx.lineWidth = 0.5;
-          this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-          this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-          this.ctx.stroke();
-        }
-      }
-    }
-  }
-  
-  toggle() {
-    this.isActive = !this.isActive;
-    if (this.isActive) this.animate();
-  }
-  
-  startPulse() {
-    this.isPulsing = true;
-    this.pulseStart = Date.now();
-  }
-  
-  stopPulse() {
-    this.isPulsing = false;
-    this.pulseStart = null;
+
+  toggleWarp(active) {
+    this.warpSpeed = active;
   }
 }
 
@@ -163,91 +98,91 @@ class SwipeableCards {
     this.container = container;
     this.track = container.querySelector('.swipeable-track');
     this.cards = Array.from(container.querySelectorAll('.swipeable-card'));
-    
+
     this.isDragging = false;
     this.startPos = 0;
     this.currentTranslate = 0;
     this.prevTranslate = 0;
     this.animationID = 0;
     this.currentIndex = 0;
-    
+
     this.cardWidth = this.cards.length > 0 ? this.cards[0].offsetWidth + 20 : 0;
-    
+
     this.initEvents();
   }
-  
+
   initEvents() {
     this.container.addEventListener('touchstart', this.touchStart.bind(this));
     this.container.addEventListener('touchend', this.touchEnd.bind(this));
     this.container.addEventListener('touchmove', this.touchMove.bind(this));
-    
+
     this.container.addEventListener('mousedown', this.touchStart.bind(this));
     this.container.addEventListener('mouseup', this.touchEnd.bind(this));
     this.container.addEventListener('mouseleave', this.touchEnd.bind(this));
     this.container.addEventListener('mousemove', this.touchMove.bind(this));
-    
+
     this.container.addEventListener('contextmenu', e => e.preventDefault());
-    
+
     window.addEventListener('resize', () => {
       this.cardWidth = this.cards.length > 0 ? this.cards[0].offsetWidth + 20 : 0;
       this.setPositionByIndex();
     });
   }
-  
+
   touchStart(event) {
     this.isDragging = true;
     this.startPos = this.getPositionX(event);
     this.animationID = requestAnimationFrame(this.animation.bind(this));
     this.container.style.cursor = 'grabbing';
   }
-  
+
   touchEnd() {
     this.isDragging = false;
     cancelAnimationFrame(this.animationID);
-    
+
     const movedBy = this.currentTranslate - this.prevTranslate;
-    
+
     if (movedBy < -100 && this.currentIndex < this.cards.length - 1) {
       this.currentIndex += 1;
     }
-    
+
     if (movedBy > 100 && this.currentIndex > 0) {
       this.currentIndex -= 1;
     }
-    
+
     this.setPositionByIndex();
     this.container.style.cursor = 'grab';
   }
-  
+
   touchMove(event) {
     if (this.isDragging) {
       const currentPosition = this.getPositionX(event);
       this.currentTranslate = this.prevTranslate + currentPosition - this.startPos;
     }
   }
-  
+
   getPositionX(event) {
     return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
   }
-  
+
   animation() {
     this.setSliderPosition();
     if (this.isDragging) requestAnimationFrame(this.animation.bind(this));
   }
-  
+
   setSliderPosition() {
     const maxTranslate = 0;
     const minTranslate = -(this.cardWidth * (this.cards.length - 1));
-    
+
     if (this.currentTranslate > maxTranslate) {
       this.currentTranslate = maxTranslate;
     } else if (this.currentTranslate < minTranslate) {
       this.currentTranslate = minTranslate;
     }
-    
+
     this.track.style.transform = `translateX(${this.currentTranslate}px)`;
   }
-  
+
   setPositionByIndex() {
     this.currentTranslate = this.currentIndex * -this.cardWidth;
     this.prevTranslate = this.currentTranslate;
@@ -266,57 +201,57 @@ class CardCarousel {
     this.startX = 0;
     this.isDragging = false;
     this.isMobile = window.innerWidth < 768;
-    
+
     if (!container.querySelector('.carousel-nav')) {
       this.createNavButtons();
     }
-    
+
     this.prevBtn = container.querySelector('.prev-btn');
     this.nextBtn = container.querySelector('.next-btn');
-    
+
     // Handle window resize events to adjust for mobile/desktop
     window.addEventListener('resize', () => {
       this.isMobile = window.innerWidth < 768;
       this.updateCarousel();
     });
-    
+
     this.updateCarousel();
     this.addEventListeners();
   }
-  
+
   createNavButtons() {
     const nav = document.createElement('div');
     nav.className = 'carousel-nav';
-    
+
     const prevBtn = document.createElement('button');
     prevBtn.className = 'carousel-nav-btn prev-btn';
     prevBtn.innerHTML = '❮';
     prevBtn.setAttribute('aria-label', 'Previous card');
-    
+
     const nextBtn = document.createElement('button');
     nextBtn.className = 'carousel-nav-btn next-btn';
     nextBtn.innerHTML = '❯';
     prevBtn.setAttribute('aria-label', 'Next card');
-    
+
     nav.appendChild(prevBtn);
     nav.appendChild(nextBtn);
     this.container.appendChild(nav);
   }
-  
+
   addEventListeners() {
     this.prevBtn.addEventListener('click', () => this.prevCard());
     this.nextBtn.addEventListener('click', () => this.nextCard());
-    
+
     this.container.addEventListener('mousedown', this.onDragStart.bind(this));
     this.container.addEventListener('touchstart', this.onDragStart.bind(this), { passive: true });
-    
+
     this.container.addEventListener('mousemove', this.onDragMove.bind(this));
     this.container.addEventListener('touchmove', this.onDragMove.bind(this), { passive: true });
-    
+
     this.container.addEventListener('mouseup', this.onDragEnd.bind(this));
     this.container.addEventListener('touchend', this.onDragEnd.bind(this));
     this.container.addEventListener('mouseleave', this.onDragEnd.bind(this));
-    
+
     this.cards.forEach((card, index) => {
       card.addEventListener('click', (e) => {
         if (index !== this.currentIndex) {
@@ -325,7 +260,7 @@ class CardCarousel {
         }
       });
     });
-    
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') {
         this.prevCard();
@@ -334,19 +269,19 @@ class CardCarousel {
       }
     });
   }
-  
+
   onDragStart(e) {
     this.isDragging = true;
     this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
     this.container.style.cursor = 'grabbing';
   }
-  
+
   onDragMove(e) {
     if (!this.isDragging) return;
-    
+
     const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
     const diff = currentX - this.startX;
-    
+
     if (diff > 50) {
       this.container.classList.add('dragging-prev');
     } else if (diff < -50) {
@@ -355,54 +290,54 @@ class CardCarousel {
       this.container.classList.remove('dragging-prev', 'dragging-next');
     }
   }
-  
+
   onDragEnd(e) {
     if (!this.isDragging) return;
-    
+
     const currentX = e.type.includes('mouse') ? e.pageX : (e.changedTouches ? e.changedTouches[0].pageX : this.startX);
     const diff = currentX - this.startX;
-    
+
     // Adjust threshold for mobile vs desktop
     const threshold = this.isMobile ? 50 : 100;
-    
+
     if (diff > threshold) {
       this.prevCard();
     } else if (diff < -threshold) {
       this.nextCard();
     }
-    
+
     this.isDragging = false;
     this.container.style.cursor = 'pointer';
     this.container.classList.remove('dragging-prev', 'dragging-next');
   }
-  
+
   prevCard() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
       this.updateCarousel();
     }
   }
-  
+
   nextCard() {
     if (this.currentIndex < this.cardCount - 1) {
       this.currentIndex++;
       this.updateCarousel();
     }
   }
-  
+
   goToCard(index) {
     if (index >= 0 && index < this.cardCount) {
       this.currentIndex = index;
       this.updateCarousel();
     }
   }
-  
+
   updateCarousel() {
     this.cards.forEach(card => card.classList.remove('active', 'next', 'prev', 'far-next', 'far-prev'));
-    
+
     this.cards.forEach((card, index) => {
       const offset = index - this.currentIndex;
-      
+
       if (this.isMobile) {
         // Simplified transformations for mobile that still look good
         if (offset === 0) {
@@ -421,8 +356,8 @@ class CardCarousel {
           card.style.zIndex = 9;
           card.style.opacity = 0.8;
         } else {
-          card.style.transform = offset > 0 
-            ? 'translateX(100%) scale(0.7)' 
+          card.style.transform = offset > 0
+            ? 'translateX(100%) scale(0.7)'
             : 'translateX(-200%) scale(0.7)';
           card.style.zIndex = 0;
           card.style.opacity = 0;
@@ -455,18 +390,18 @@ class CardCarousel {
           card.style.zIndex = 8;
           card.style.opacity = 0.7;
         } else {
-          card.style.transform = offset > 0 
-            ? 'translateX(120%) scale(0.7)' 
+          card.style.transform = offset > 0
+            ? 'translateX(120%) scale(0.7)'
             : 'translateX(-220%) scale(0.7)';
           card.style.zIndex = 0;
           card.style.opacity = 0;
         }
       }
     });
-    
+
     this.updateButtonStates();
   }
-  
+
   updateButtonStates() {
     if (this.currentIndex === 0) {
       this.prevBtn.classList.add('disabled');
@@ -475,7 +410,7 @@ class CardCarousel {
       this.prevBtn.classList.remove('disabled');
       this.prevBtn.disabled = false;
     }
-    
+
     if (this.currentIndex === this.cardCount - 1) {
       this.nextBtn.classList.add('disabled');
       this.nextBtn.disabled = true;
@@ -492,23 +427,23 @@ class GlitchText {
     this.elements = document.querySelectorAll(selector);
     this.init();
   }
-  
+
   init() {
     this.elements.forEach(element => {
       const originalText = element.textContent;
       element.dataset.originalText = originalText;
-      
+
       element.addEventListener('mouseover', () => this.startGlitch(element));
       element.addEventListener('mouseout', () => this.stopGlitch(element));
     });
   }
-  
+
   startGlitch(element) {
     if (element.glitchInterval) return;
-    
+
     const originalText = element.dataset.originalText;
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}:"<>?|';
-    
+
     let glitchCount = 0;
     element.glitchInterval = setInterval(() => {
       let glitchedText = '';
@@ -519,15 +454,15 @@ class GlitchText {
           glitchedText += originalText[i];
         }
       }
-      
+
       element.textContent = glitchedText;
-      
+
       glitchCount++;
       if (glitchCount > 10) {
         element.textContent = originalText;
         clearInterval(element.glitchInterval);
         element.glitchInterval = null;
-        
+
         setTimeout(() => {
           if (element.matches(':hover')) {
             this.startGlitch(element);
@@ -536,7 +471,7 @@ class GlitchText {
       }
     }, 100);
   }
-  
+
   stopGlitch(element) {
     if (element.glitchInterval) {
       clearInterval(element.glitchInterval);
@@ -546,47 +481,34 @@ class GlitchText {
   }
 }
 
-// Synthwave effect handler
+// Synthwave effect handler (Visual Only)
 let synthwaveActive = false;
 let synthwaveTimeout = null;
-let synthwaveAudio = null;
 let staticOverlay = null;
+let gridOverlay = null;
 
 function toggleSynthwaveEffect() {
-  const backgroundVideo = document.querySelector('#background-video');
-  if (!backgroundVideo) {
-    return 'Error: Background video element not found.';
-  }
-  
-  const originalSource = 'assets/videos/galaxies.mp4';
-  const synthwaveSource = 'assets/videos/synthwave.mp4';
-
   if (synthwaveActive) {
-    backgroundVideo.querySelector('source').src = originalSource;
-    backgroundVideo.load();
-    backgroundVideo.play();
     document.documentElement.style.setProperty('--neon-pink', '#ff69b4');
     document.documentElement.style.setProperty('--neon-blue', '#60A5FA');
     document.documentElement.style.setProperty('--neon-purple', '#5B21B6');
-    if (synthwaveAudio) {
-      synthwaveAudio.pause();
-      synthwaveAudio = null;
-    }
     if (staticOverlay) {
       document.body.removeChild(staticOverlay);
       staticOverlay = null;
+    }
+    if (gridOverlay) {
+      document.body.removeChild(gridOverlay);
+      gridOverlay = null;
     }
     clearTimeout(synthwaveTimeout);
     synthwaveActive = false;
     return 'Synthwave effect deactivated. Back to the cyberpunk grid.';
   } else {
-    backgroundVideo.querySelector('source').src = synthwaveSource;
-    backgroundVideo.load();
-    backgroundVideo.play();
     document.documentElement.style.setProperty('--neon-pink', '#ff00ea');
     document.documentElement.style.setProperty('--neon-blue', '#00dbff');
     document.documentElement.style.setProperty('--neon-purple', '#a100ff');
-    
+
+    // Static Overlay
     staticOverlay = document.createElement('div');
     staticOverlay.className = 'synthwave-static-overlay';
     staticOverlay.style.position = 'fixed';
@@ -598,22 +520,37 @@ function toggleSynthwaveEffect() {
     staticOverlay.style.zIndex = '5';
     staticOverlay.style.background = 'repeating-linear-gradient(to bottom, transparent 0%, transparent 2px, rgba(255, 255, 255, 0.1) 2px, rgba(255, 255, 255, 0.1) 4px)';
     staticOverlay.style.animation = 'static-shift 0.5s linear infinite';
-    
+
+    // Perspective Grid Overlay
+    gridOverlay = document.createElement('div');
+    gridOverlay.className = 'synthwave-grid-overlay';
+    gridOverlay.style.position = 'fixed';
+    gridOverlay.style.bottom = '0';
+    gridOverlay.style.left = '0';
+    gridOverlay.style.width = '100%';
+    gridOverlay.style.height = '50%';
+    gridOverlay.style.pointerEvents = 'none';
+    gridOverlay.style.zIndex = '4';
+    gridOverlay.style.transform = 'perspective(500px) rotateX(60deg)';
+    gridOverlay.style.backgroundImage = 'linear-gradient(to right, rgba(255, 0, 234, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 0, 234, 0.5) 1px, transparent 1px)';
+    gridOverlay.style.backgroundSize = '40px 40px';
+    gridOverlay.style.animation = 'grid-move 20s linear infinite';
+
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
       @keyframes static-shift {
         0% { background-position: 0 0; }
         100% { background-position: 0 4px; }
       }
+      @keyframes grid-move {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 100%; }
+      }
     `;
     document.head.appendChild(styleSheet);
     document.body.appendChild(staticOverlay);
-    
-    synthwaveAudio = new Audio('assets/audio/synthwave.wav');
-    synthwaveAudio.volume = 0.2;
-    synthwaveAudio.loop = true;
-    synthwaveAudio.play().catch(err => console.error('Synthwave audio error:', err));
-    
+    document.body.appendChild(gridOverlay);
+
     synthwaveTimeout = setTimeout(() => {
       toggleSynthwaveEffect();
     }, 30000);
@@ -622,10 +559,9 @@ function toggleSynthwaveEffect() {
   }
 }
 
-// Neonstorm effect handler
+// Neonstorm effect handler (Visual Only)
 let neonstormActive = false;
 let neonstormTimeout = null;
-let neonstormAudio = null;
 let neonstormOverlay = null;
 
 function toggleNeonstormEffect() {
@@ -635,10 +571,6 @@ function toggleNeonstormEffect() {
     document.documentElement.style.setProperty('--neon-purple', '#5B21B6');
     document.querySelectorAll('.neon-glow').forEach(el => el.classList.remove('neon-glow-intense'));
     document.querySelectorAll('.neon-border').forEach(el => el.classList.remove('neon-border-intense'));
-    if (neonstormAudio) {
-      neonstormAudio.pause();
-      neonstormAudio = null;
-    }
     if (neonstormOverlay) {
       document.body.removeChild(neonstormOverlay);
       neonstormOverlay = null;
@@ -655,20 +587,63 @@ function toggleNeonstormEffect() {
 
     neonstormOverlay = document.createElement('div');
     neonstormOverlay.className = 'neonstorm-rain-overlay';
-    for (let i = 0; i < 50; i++) {
+    neonstormOverlay.style.position = 'fixed';
+    neonstormOverlay.style.top = '0';
+    neonstormOverlay.style.left = '0';
+    neonstormOverlay.style.width = '100%';
+    neonstormOverlay.style.height = '100%';
+    neonstormOverlay.style.pointerEvents = 'none';
+    neonstormOverlay.style.zIndex = '10';
+
+    // Lightning Flash
+    const flash = document.createElement('div');
+    flash.style.position = 'absolute';
+    flash.style.top = '0';
+    flash.style.left = '0';
+    flash.style.width = '100%';
+    flash.style.height = '100%';
+    flash.style.backgroundColor = 'white';
+    flash.style.opacity = '0';
+    flash.style.transition = 'opacity 0.1s';
+    neonstormOverlay.appendChild(flash);
+
+    // Trigger lightning randomly
+    const lightningLoop = setInterval(() => {
+      if (!neonstormActive) {
+        clearInterval(lightningLoop);
+        return;
+      }
+      if (Math.random() > 0.7) {
+        flash.style.opacity = '0.8';
+        setTimeout(() => { flash.style.opacity = '0'; }, 100);
+        setTimeout(() => { flash.style.opacity = '0.4'; }, 150);
+        setTimeout(() => { flash.style.opacity = '0'; }, 250);
+      }
+    }, 2000);
+
+    for (let i = 0; i < 100; i++) {
       const bit = document.createElement('div');
       bit.className = 'neonstorm-rain-bit';
+      bit.style.position = 'absolute';
+      bit.style.top = '-20px';
       bit.style.left = `${Math.random() * 100}%`;
+      bit.style.color = '#00dbff';
+      bit.style.fontSize = `${Math.random() * 20 + 10}px`;
+      bit.style.opacity = Math.random();
+      bit.style.animation = `fall ${Math.random() * 2 + 1}s linear infinite`;
       bit.style.animationDelay = `${Math.random() * 2}s`;
       bit.textContent = Math.random() > 0.5 ? '1' : '0';
       neonstormOverlay.appendChild(bit);
     }
-    document.body.appendChild(neonstormOverlay);
 
-    neonstormAudio = new Audio('assets/audio/thunder.wav');
-    neonstormAudio.volume = 0.3;
-    neonstormAudio.loop = true;
-    neonstormAudio.play().catch(err => console.error('Thunder audio error:', err));
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes fall {
+        to { transform: translateY(100vh); }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+    document.body.appendChild(neonstormOverlay);
 
     neonstormTimeout = setTimeout(() => {
       toggleNeonstormEffect();
@@ -683,14 +658,9 @@ function toggleNeonstormEffect() {
   }
 }
 
-// Core Breach Protocol handler
+// Core Breach Protocol handler (Visual Only)
 let coreBreachActive = false;
 let coreBreachTimeout = null;
-let coreBreachAudio = {
-  thunder: null,
-  synthwave: null,
-  typing: null
-};
 let coreBreachOverlays = {
   neonstorm: null,
   matrix: null,
@@ -699,32 +669,22 @@ let coreBreachOverlays = {
 };
 
 function toggleCoreBreachEffect(terminal) {
-  const backgroundVideo = document.querySelector('#background-video');
-  if (!backgroundVideo || !window.particleBackground || !terminal) {
+  if (!window.starfieldBackground || !terminal) {
     return 'Error: Required elements not found. Core Breach aborted.';
   }
 
   if (coreBreachActive) {
-    backgroundVideo.querySelector('source').src = 'assets/videos/galaxies.mp4';
-    backgroundVideo.style.filter = 'none';
-    backgroundVideo.load();
-    backgroundVideo.play();
     document.documentElement.style.setProperty('--neon-pink', '#ff69b4');
     document.documentElement.style.setProperty('--neon-blue', '#60A5FA');
     document.documentElement.style.setProperty('--neon-purple', '#5B21B6');
-    window.particleBackground.stopPulse();
-    Object.values(coreBreachAudio).forEach(audio => audio && audio.pause());
-    coreBreachAudio = { thunder: null, synthwave: null, typing: null };
+    window.starfieldBackground.toggleWarp(false);
+
     Object.values(coreBreachOverlays).forEach(overlay => overlay && document.body.removeChild(overlay));
     coreBreachOverlays = { neonstorm: null, matrix: null, static: null, countdown: null };
     clearTimeout(coreBreachTimeout);
     coreBreachActive = false;
     return 'Core breach terminated. System stabilized.';
   } else {
-    backgroundVideo.querySelector('source').src = 'assets/videos/synthwave.mp4';
-    backgroundVideo.style.filter = 'brightness(0.8) contrast(1.2)';
-    backgroundVideo.load();
-    backgroundVideo.play();
     document.documentElement.style.setProperty('--neon-pink', '#ff00ea');
     document.documentElement.style.setProperty('--neon-blue', '#00dbff');
     document.documentElement.style.setProperty('--neon-purple', '#a100ff');
@@ -769,31 +729,7 @@ function toggleCoreBreachEffect(terminal) {
     coreBreachOverlays.countdown.innerHTML = '<div class="countdown-message">Grid Integrity: 75%</div>';
     document.body.appendChild(coreBreachOverlays.countdown);
 
-    coreBreachAudio.thunder = new Audio('assets/audio/thunder.wav');
-    coreBreachAudio.thunder.volume = 0.3;
-    coreBreachAudio.thunder.loop = true;
-    coreBreachAudio.thunder.play().catch(err => console.error('Thunder audio error:', err));
-
-    coreBreachAudio.synthwave = new Audio('assets/audio/synthwave.wav');
-    coreBreachAudio.synthwave.volume = 0.2;
-    coreBreachAudio.synthwave.loop = true;
-    coreBreachAudio.synthwave.play().catch(err => console.error('Synthwave audio error:', err));
-
-    try {
-      coreBreachAudio.typing = new Audio('assets/audio/typing.wav');
-      coreBreachAudio.typing.volume = 0.15;
-      function playTyping() {
-        if (coreBreachActive) {
-          coreBreachAudio.typing.play().catch(err => console.error('Typing audio error:', err));
-          setTimeout(playTyping, 2000 + Math.random() * 1000);
-        }
-      }
-      playTyping();
-    } catch (e) {
-      console.warn('Typing audio not found, continuing without.');
-    }
-
-    window.particleBackground.startPulse();
+    window.starfieldBackground.toggleWarp(true);
 
     let countdown = 75;
     function updateCountdown() {
@@ -847,29 +783,29 @@ class TerminalEffect {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
     if (!this.container) return;
-    
+
     this.commands = {};
     this.history = [];
     this.historyIndex = -1;
-    
+
     this.initTerminal();
     this.addBasicCommands();
   }
-  
+
   initTerminal() {
     this.terminal = document.createElement('div');
     this.terminal.className = 'terminal bg-gray-900 text-green-400 p-4 rounded-lg border border-blue-600 shadow-lg max-h-96 overflow-y-auto font-mono text-sm';
-    
+
     this.output = document.createElement('div');
     this.output.className = 'terminal-output mb-4';
-    
+
     this.inputLine = document.createElement('div');
     this.inputLine.className = 'terminal-input-line flex';
-    
+
     const prompt = document.createElement('span');
     prompt.className = 'terminal-prompt text-pink-500 mr-2';
     prompt.innerHTML = 'info@matthewkobilan.com:~$ ';
-    
+
     this.input = document.createElement('input');
     this.input.type = 'text';
     this.input.className = 'terminal-input bg-transparent text-green-400 outline-none flex-1 caret-pink-500';
@@ -880,22 +816,21 @@ class TerminalEffect {
     this.input.style.borderRadius = '6px';
     this.input.style.boxSizing = 'border-box';
     this.input.setAttribute('spellcheck', 'false');
-    // Removed autofocus to prevent conflicts with contact form
-    
+
     this.inputLine.appendChild(prompt);
     this.inputLine.appendChild(this.input);
-    
+
     this.terminal.appendChild(this.output);
     this.terminal.appendChild(this.inputLine);
-    
+
     this.container.appendChild(this.terminal);
-    
+
     this.input.addEventListener('keydown', this.handleKeyDown.bind(this));
-    
+
     this.terminal.addEventListener('click', () => {
       this.input.focus();
     });
-    
+
     this.print(`
       <div class="mb-2">
         <span class="text-blue-500 text-xl">╔══════════════════════════════════════════════════════╗</span>
@@ -912,13 +847,13 @@ class TerminalEffect {
       <p class="text-xs text-gray-500 mb-4">System initialized: ${new Date().toLocaleString()}</p>
     `);
   }
-  
+
   handleKeyDown(e) {
     if (e.key === 'Enter') {
       const command = this.input.value.trim();
       this.executeCommand(command);
       this.input.value = '';
-      
+
       if (command) {
         this.history.unshift(command);
         this.historyIndex = -1;
@@ -946,13 +881,13 @@ class TerminalEffect {
       this.autocomplete();
     }
   }
-  
+
   autocomplete() {
     const input = this.input.value.trim();
     if (!input) return;
-    
+
     const possibleCommands = Object.keys(this.commands).filter(cmd => cmd.startsWith(input));
-    
+
     if (possibleCommands.length === 1) {
       this.input.value = possibleCommands[0];
     } else if (possibleCommands.length > 1) {
@@ -964,12 +899,12 @@ class TerminalEffect {
       `);
     }
   }
-  
+
   executeCommand(command) {
     if (!command) return;
-    
+
     this.print(`<div class="text-pink-500">info@matthewkobilan.com:~$ <span class="text-green-400">${command}</span></div>`);
-    
+
     if (command.toLowerCase() === 'neonstorm synthwave matrix') {
       const output = toggleCoreBreachEffect(this);
       if (output) {
@@ -978,7 +913,7 @@ class TerminalEffect {
     } else {
       const args = command.split(' ');
       const cmd = args.shift().toLowerCase();
-      
+
       if (this.commands[cmd]) {
         const output = this.commands[cmd].execute(args);
         if (output) {
@@ -988,10 +923,10 @@ class TerminalEffect {
         this.print(`<div class="text-red-500">Command not found: ${cmd}. Type <span class="text-pink-500">help</span> for available commands.</div>`);
       }
     }
-    
+
     this.terminal.scrollTop = this.terminal.scrollHeight;
   }
-  
+
   print(html) {
     this.output.innerHTML += html;
     // Always scroll output to the bottom
@@ -1006,14 +941,14 @@ class TerminalEffect {
       this.input.focus();
     }
   }
-  
+
   addCommand(name, description, executeFunc) {
     this.commands[name] = {
       description,
       execute: executeFunc
     };
   }
-  
+
   addBasicCommands() {
     this.addCommand('help', 'Display available commands', () => {
       let output = `
@@ -1028,7 +963,7 @@ class TerminalEffect {
             </thead>
             <tbody>
       `;
-      
+
       Object.keys(this.commands).sort().forEach(cmd => {
         output += `
           <tr>
@@ -1037,21 +972,21 @@ class TerminalEffect {
           </tr>
         `;
       });
-      
+
       output += `
             </tbody>
           </table>
         </div>
       `;
-      
+
       return output;
     });
-    
+
     this.addCommand('clear', 'Clear the terminal', () => {
       this.output.innerHTML = '';
       return '';
     });
-    
+
     this.addCommand('about', 'About Matthew Kobilan', () => {
       return `
         <div class="text-green-400">
@@ -1069,7 +1004,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('skills', 'List technical skills', () => {
       return `
         <div class="text-green-400">
@@ -1121,7 +1056,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('projects', 'View portfolio projects', () => {
       return `
         <div class="text-green-400">
@@ -1143,7 +1078,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('contact', 'Get contact information', () => {
       return `
         <div class="text-green-400">
@@ -1155,7 +1090,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('services', 'View services offered', () => {
       return `
         <div class="text-green-400">
@@ -1183,7 +1118,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('pricing', 'View pricing information', () => {
       return `
         <div class="text-green-400">
@@ -1220,10 +1155,13 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('dev', 'Unlock developer mode', () => {
-      window.open('website-development.html', '_blank');
-      
+      this.print('<div class="text-blue-400">Initializing developer sequence...</div>');
+      setTimeout(() => {
+        window.open('website-development.html', '_blank');
+      }, 1500);
+
       return `
         <div class="text-green-400">
           <p class="text-xl text-pink-500 mb-2 glitch-effect">ACCESS GRANTED</p>
@@ -1232,9 +1170,12 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('neonhack', 'Initiate a neon hack sequence', () => {
-      window.open('/hidden/neonhack.html', '_blank');
+      this.print('<div class="text-blue-400">Injecting neon payload...</div>');
+      setTimeout(() => {
+        window.open('hidden/neonhack.html', '_blank');
+      }, 1500);
       return `
         <div class="text-green-400">
           <p class="text-xl text-pink-500 mb-2 glitch-effect">NEON HACK INITIATED</p>
@@ -1244,16 +1185,7 @@ class TerminalEffect {
       `;
     });
 
-    this.addCommand('blackice', 'Breach the black ice defenses', () => {
-      window.open('/hidden/blackice.html', '_blank');
-      return `
-        <div class="text-green-400">
-          <p class="text-xl text-pink-500 mb-2 glitch-effect">BLACK ICE DETECTED</p>
-          <p class="mb-2">Breaching defenses... Video feed intercepted.</p>
-          <p class="text-xs text-blue-400 blink-text">Stand by for classified transmission.</p>
-        </div>
-      `;
-    });
+
 
     this.addCommand('gridrunner2025', 'Enter the secret code', () => {
       let userCode = sessionStorage.getItem('gridrunnerCode');
@@ -1276,7 +1208,10 @@ class TerminalEffect {
     });
 
     this.addCommand('ghostprotocol', 'Initiate a hacking protocol', () => {
-      window.open('/hidden/game.html', '_blank');
+      this.print('<div class="text-blue-400">Ghost Protocol engaged. Masking IP...</div>');
+      setTimeout(() => {
+        window.open('hidden/game.html', '_blank');
+      }, 1500);
       return `
         <div class="text-green-400">
           <p class="text-xl text-pink-500 mb-2 glitch-effect">GHOST PROTOCOL ACTIVATED</p>
@@ -1307,7 +1242,10 @@ class TerminalEffect {
     });
 
     this.addCommand('shadowrun', 'Access a classified project', () => {
-      window.open('/hidden/shadowrun.html', '_blank');
+      this.print('<div class="text-blue-400">Authenticating Shadowrun credentials...</div>');
+      setTimeout(() => {
+        window.open('hidden/shadowrun.html', '_blank');
+      }, 1500);
       sessionStorage.setItem('shadowrunAchievement', 'true');
       return `
         <div class="text-green-400">
@@ -1323,7 +1261,7 @@ class TerminalEffect {
       const message = toggleNeonstormEffect();
       return message;
     });
-    
+
     this.addCommand('creators', 'Information for content creators', () => {
       return `
         <div class="text-green-400">
@@ -1355,7 +1293,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('features', 'Detailed creator platform features', () => {
       return `
         <div class="text-green-400">
@@ -1375,7 +1313,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('nft', 'Learn about NFT integration', () => {
       return `
         <div class="text-green-400">
@@ -1398,7 +1336,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('monetize', 'Monetization options', () => {
       return `
         <div class="text-green-400">
@@ -1418,7 +1356,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('examples', 'Show example creator sites', () => {
       return `
         <div class="text-green-400">
@@ -1433,11 +1371,11 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('matrix', 'Enter the Matrix', () => {
       let output = '<div class="text-green-400 matrix-rain" style="font-family: monospace; line-height: 1.2;">';
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$&+,:;=?@#|\'<>.^*()%!-';
-      
+
       for (let i = 0; i < 15; i++) {
         let line = '';
         for (let j = 0; j < 50; j++) {
@@ -1445,11 +1383,11 @@ class TerminalEffect {
         }
         output += `<div>${line}</div>`;
       }
-      
+
       output += '</div><p class="text-green-400 mt-2">Wake up, Neo...</p>';
       return output;
     });
-    
+
     this.addCommand('cyberpunk', 'Show cyberpunk quote', () => {
       const quotes = [
         "The future is already here — it's just not very evenly distributed. - William Gibson",
@@ -1459,9 +1397,9 @@ class TerminalEffect {
         "The street finds its own uses for things. - William Gibson",
         "Cyberspace. A consensual hallucination experienced daily by billions of legitimate operators. - William Gibson"
       ];
-      
+
       const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-      
+
       return `
         <div class="text-green-400">
           <p class="text-xl text-pink-500 mb-2">Cyberpunk Wisdom:</p>
@@ -1469,7 +1407,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('date', 'Display current date and time', () => {
       return `
         <div class="text-green-400">
@@ -1477,7 +1415,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('whoami', 'Display current user', () => {
       return `
         <div class="text-green-400">
@@ -1486,7 +1424,7 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('ls', 'List directory contents', () => {
       return `
         <div class="text-green-400">
@@ -1503,14 +1441,14 @@ class TerminalEffect {
         </div>
       `;
     });
-    
+
     this.addCommand('cat', 'Display file contents', (args) => {
       if (!args.length) {
         return '<div class="text-red-500">Usage: cat [filename]</div>';
       }
-      
+
       const filename = args[0].toLowerCase();
-      
+
       if (filename === 'about.txt') {
         return this.commands['about'].execute();
       } else if (filename === 'services.md') {
@@ -1528,70 +1466,21 @@ class TerminalEffect {
   }
 }
 
-// Audio effects for interactions
-class AudioEffects {
-  constructor() {
-    this.sounds = {
-      hover: new Audio('assets/audio/hover.mp3'),
-      click: new Audio('assets/audio/click.flac')
-      // glitch sound removed as requested
-    };
-    
-    Object.values(this.sounds).forEach(sound => {
-      sound.volume = 0.2;
-    });
-    
-    this.init();
-  }
-  
-  init() {
-    document.querySelectorAll('a, button, .card-pop').forEach(element => {
-      element.addEventListener('mouseenter', () => this.playSound('hover'));
-      element.addEventListener('click', () => this.playSound('click'));
-    });
-    
-    // Glitch sound effect event listeners removed as requested
-  }
-  
-  playSound(type) {
-    try {
-      if (!this.sounds[type]) return;
-      const sound = this.sounds[type].cloneNode();
-      sound.play().catch(e => {
-        // Silently fail - don't log errors to console
-        // This prevents console spam when audio can't play
-      });
-    } catch (e) {
-      // Silently fail
-    }
-  }
-}
-
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
   const currentPage = window.location.pathname.split('/').pop();
   if (currentPage === 'success.html' || currentPage === 'cancel.html') return;
-  
-  window.particleBackground = new ParticleBackground();
+
+  window.starfieldBackground = new StarfieldBackground();
   window.glitchText = new GlitchText('.glitch-text');
-  
+
   setTimeout(() => {
     window.terminalEffect = new TerminalEffect('terminal-container');
     window.scrollTo(0, 0);
   }, 100);
-  
+
   initSwipeableCards();
   initCardCarousels();
-  
-  let audioInitialized = false;
-  const initAudio = () => {
-    if (!audioInitialized) {
-      window.audioEffects = new AudioEffects();
-      audioInitialized = true;
-      document.removeEventListener('click', initAudio);
-    }
-  };
-  document.addEventListener('click', initAudio);
 });
 
 // Scroll animations
@@ -1600,27 +1489,27 @@ const observeElements = () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate-in');
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
-  
-  document.querySelectorAll('.animate-on-scroll').forEach(element => {
-    observer.observe(element);
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
   });
 };
 
-window.addEventListener('load', observeElements);
+document.addEventListener('DOMContentLoaded', observeElements);
 
+// Helper functions for initialization
 function initSwipeableCards() {
-  const swipeableContainers = document.querySelectorAll('.swipeable-container');
-  swipeableContainers.forEach(container => {
+  document.querySelectorAll('.swipeable-container').forEach(container => {
     new SwipeableCards(container);
   });
 }
 
 function initCardCarousels() {
-  const cardCarouselContainers = document.querySelectorAll('.card-carousel-container');
-  cardCarouselContainers.forEach(container => {
+  document.querySelectorAll('.card-carousel-container').forEach(container => {
     new CardCarousel(container);
   });
 }
