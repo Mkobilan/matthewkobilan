@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="icon" type="image/jpeg" href="assets/images/headshot.jpg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matthew Kobilan | Web Developer & Designer | Custom Websites & Web3 Solutions</title>
-  <meta name="description" content="Expert web developer specializing in custom websites, web applications, and Web3 integration for small businesses, e-commerce, and social media influencers. Get a modern, responsive, SEO-optimized website tailored to your business or brand.">
-  <meta name="keywords" content="web developer, website design, custom websites, web applications, Web3, NFT integration, e-commerce, responsive design, cyberpunk design, small business websites, influencer websites, content creator sites, SEO, mobile friendly">
+  <meta name="description"
+    content="Expert web developer specializing in custom websites, web applications, and Web3 integration for small businesses, e-commerce, and social media influencers. Get a modern, responsive, SEO-optimized website tailored to your business or brand.">
+  <meta name="keywords"
+    content="web developer, website design, custom websites, web applications, Web3, NFT integration, e-commerce, responsive design, cyberpunk design, small business websites, influencer websites, content creator sites, SEO, mobile friendly">
   <meta name="author" content="Matthew Kobilan">
-  
+
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:title" content="Matthew Kobilan | Web Developer & Designer">
-  <meta property="og:description" content="Expert web developer specializing in custom websites, web applications, and Web3 integration.">
+  <meta property="og:description"
+    content="Expert web developer specializing in custom websites, web applications, and Web3 integration.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matthewkobilan.com">
   <meta property="og:image" content="https://matthewkobilan.com/assets/images/og-image.jpg">
-  
+
   <!-- Twitter Card data -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Matthew Kobilan | Web Developer & Designer">
-  <meta name="twitter:description" content="Expert web developer specializing in custom websites, web applications, and Web3 integration.">
+  <meta name="twitter:description"
+    content="Expert web developer specializing in custom websites, web applications, and Web3 integration.">
   <meta name="twitter:image" content="https://matthewkobilan.com/assets/images/og-image.jpg">
-  
+
   <!-- Canonical URL -->
   <link rel="canonical" href="https://matthewkobilan.com">
-  
+
   <!-- Note: Using Tailwind CSS CDN for development. In a future update, we'll implement a proper build process. -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Roboto Mono -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Audiowide&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Audiowide&display=swap"
+    rel="stylesheet">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <!-- Stripe JS -->
   <script src="https://js.stripe.com/v3/"></script>
-  
+
   <!-- Structured Data for Local Business -->
   <script type="application/ld+json">
   {
@@ -82,6 +88,7 @@
       position: relative;
       overflow-x: hidden;
     }
+
     #background-video {
       position: fixed;
       top: 0;
@@ -91,44 +98,61 @@
       object-fit: cover;
       z-index: -1;
     }
+
     /* Pop effect for cards */
     .card-pop {
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
+
     .card-pop:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px 5px rgba(255, 105, 180, 0.7); /* Pink neon glow */
-      border-color: #60A5FA; /* Blue border on hover */
+      box-shadow: 0 0 15px 5px rgba(255, 105, 180, 0.7);
+      /* Pink neon glow */
+      border-color: #60A5FA;
+      /* Blue border on hover */
     }
+
     /* Pop effect for form fields */
     .field-pop {
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
+
     .field-pop:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 10px 3px rgba(255, 105, 180, 0.5); /* Pink neon glow */
-      border-color: #60A5FA; /* Blue border on hover */
+      box-shadow: 0 0 10px 3px rgba(255, 105, 180, 0.5);
+      /* Pink neon glow */
+      border-color: #60A5FA;
+      /* Blue border on hover */
     }
+
     /* Pop effect for text */
     .text-pop {
       display: inline-block;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
+
     .text-pop:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 10px 3px rgba(255, 105, 180, 0.5); /* Pink neon glow */
-      border-color: #60A5FA; /* Blue border on hover */
+      box-shadow: 0 0 10px 3px rgba(255, 105, 180, 0.5);
+      /* Pink neon glow */
+      border-color: #60A5FA;
+      /* Blue border on hover */
     }
+
     /* Pop effect for service box titles */
     .service-title-pop {
       display: inline-block;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
+
     .service-title-pop:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 10px 3px rgba(255, 105, 180, 0.5); /* Pink neon glow */
-      border-color: #FF69B4; /* Pink border on hover */
+      box-shadow: 0 0 10px 3px rgba(255, 105, 180, 0.5);
+      /* Pink neon glow */
+      border-color: #FF69B4;
+      /* Pink border on hover */
     }
+
     /* Swipeable cards */
     .swipeable-container {
       position: relative;
@@ -136,6 +160,7 @@
       height: 100%;
       overflow: hidden;
     }
+
     .swipeable-track {
       display: flex;
       flex-wrap: nowrap;
@@ -143,12 +168,14 @@
       height: 100%;
       transition: transform 0.3s ease;
     }
+
     .swipeable-card {
       flex-shrink: 0;
       width: 100%;
       height: 100%;
       margin-right: 20px;
     }
+
     /* Section title background */
     .section-title-bg {
       background-color: rgba(0, 0, 0, 0.5);
@@ -159,39 +186,40 @@
   <script>
     // Prevent auto-scrolling on page load
     history.scrollRestoration = 'manual';
-    
+
     // Force scroll to top on page load
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
       window.scrollTo(0, 0);
     }
-    
-    document.addEventListener('DOMContentLoaded', function() {
+
+    document.addEventListener('DOMContentLoaded', function () {
       // Remove any hash from the URL to prevent auto-scrolling
       if (window.location.hash) {
         // Remove hash from URL without triggering page reload or history change
         history.pushState('', document.title, window.location.pathname + window.location.search);
       }
-      
+
       // Force scroll to top
       window.scrollTo(0, 0);
-      
+
       // Also force scroll to top after a short delay
-      setTimeout(function() {
+      setTimeout(function () {
         window.scrollTo(0, 0);
       }, 100);
-      
+
       // And again after a longer delay
-      setTimeout(function() {
+      setTimeout(function () {
         window.scrollTo(0, 0);
       }, 500);
     });
-    
+
     // Disable automatic scrolling to anchors
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
       window.scrollTo(0, 0);
     });
   </script>
 </head>
+
 <body class="text-white font-['Roboto_Mono']">
   <!-- Full-page background video -->
   <!-- Full-page background canvas -->
@@ -200,15 +228,16 @@
   <!-- Header -->
   <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-10">
     <div class="container mx-auto px-4 py-4 text-center relative">
-      <a href="/" class="text-3xl font-bold neon-glow text-pink-500 glitch-text" data-text="Matthew Kobilan">Matthew Kobilan</a>
-      
+      <a href="/" class="text-3xl font-bold neon-glow text-pink-500 glitch-text" data-text="Matthew Kobilan">Matthew
+        Kobilan</a>
+
       <!-- Menu Toggle Button -->
       <div class="mobile-menu-toggle">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </div>
-      
+
       <!-- Mobile Navigation Menu -->
       <div class="mobile-menu">
         <a href="#intro" class="hover:text-blue-400 transition">Intro</a>
@@ -234,8 +263,11 @@
   <!-- Intro -->
   <section id="intro" class="py-20 bg-transparent">
     <div class="container mx-auto px-4 text-center">
-      <h1 class="text-5xl md:text-7xl font-bold neon-glow text-blue-600 glitch-effect border-4 border-purple-800 text-pop section-title-bg" data-text="Hi, I'm Matthew">Hi, I'm Matthew</h1>
-      <p class="text-xl md:text-3xl mt-4 text-pink-300 text-pop typing-animation"><span>Crafting Neon-Charged Websites in a Cyberpunk World</span></p>
+      <h1
+        class="text-5xl md:text-7xl font-bold neon-glow text-blue-600 glitch-effect border-4 border-purple-800 text-pop section-title-bg"
+        data-text="Hi, I'm Matthew">Hi, I'm Matthew</h1>
+      <p class="text-xl md:text-3xl mt-4 text-pink-300 text-pop typing-animation"><span>Crafting Neon-Charged Websites
+          in a Cyberpunk World</span></p>
     </div>
   </section>
 
@@ -244,15 +276,27 @@
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-4xl font-bold neon-glow text-purple-800 section-title-bg" data-text="About Me">About Me</h2>
       <div class="max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
-        <img src="assets/images/headshot.jpg" alt="Matthew Kobilan" class="mx-auto mt-8 w-32 h-32 rounded-full border-4 border-pink-700 neon-border hover-3d">
+        <img src="assets/images/headshot.jpg" alt="Matthew Kobilan"
+          class="mx-auto mt-8 w-32 h-32 rounded-full border-4 border-pink-700 neon-border hover-3d">
         <p class="mt-6 text-lg">
-          I'm Matthew Kobilan, a full-stack Web3 developer with a knack for turning wild ideas into neon-charged digital realities. I've built platforms like <a href="https://www.lemonclubcollective.com" class="text-pink-700 hover:text-blue-600 transition data-corruption" data-text="Lemon Club Collective">Lemon Club Collective</a>, a gamified Web3 app with Solana NFT minting, e-commerce, and dynamic quests. Using cutting-edge AI tools, I craft scalable apps that rival agency-grade work—think immersive UI, blockchain integration, and lightning-fast performance.
+          I'm Matthew Kobilan, a full-stack Web3 developer with a knack for turning wild ideas into neon-charged digital
+          realities. I've built platforms like <a href="https://www.lemonclubcollective.com"
+            class="text-pink-700 hover:text-blue-600 transition data-corruption" data-text="Lemon Club Collective">Lemon
+            Club Collective</a>, a gamified Web3 app with Solana NFT minting, e-commerce, and dynamic quests. Using
+          cutting-edge AI tools, I craft scalable apps that rival agency-grade work—think immersive UI, blockchain
+          integration, and lightning-fast performance.
         </p>
         <p class="mt-4 text-lg">
-          My toolbox? Frontend magic with React, Tailwind, and parallax effects; backend power with Node.js, MongoDB, and APIs; blockchain wizardry on Solana and Ethereum; and payment systems like Stripe, PayPal, Coinbase, and Phantom. I'm your one-man dev team for e-commerce, gamification (leaderboards, badges, oh my!), NFT minting, mobile apps, and AI-driven features. Check out my <a href="assets/FullStackCVMatthewKobilan.pdf" class="text-pink-700 hover:text-blue-600 transition">resume</a> for the full scoop!
+          My toolbox? Frontend magic with React, Tailwind, and parallax effects; backend power with Node.js, MongoDB,
+          and APIs; blockchain wizardry on Solana and Ethereum; and payment systems like Stripe, PayPal, Coinbase, and
+          Phantom. I'm your one-man dev team for e-commerce, gamification (leaderboards, badges, oh my!), NFT minting,
+          mobile apps, and AI-driven features. Check out my <a href="assets/FullStackCVMatthewKobilan.pdf"
+            class="text-pink-700 hover:text-blue-600 transition">resume</a> for the full scoop!
         </p>
         <p class="mt-4 text-lg">
-          <span class="text-pink-700 font-bold neon-pulse">Why me?</span> I don't just code—I create experiences that make your brand pop in a crowded digital world. Whether it's a startup store or a blockchain empire, I deliver fast, stylish, and innovative solutions. Let's build something epic together!
+          <span class="text-pink-700 font-bold neon-pulse">Why me?</span> I don't just code—I create experiences that
+          make your brand pop in a crowded digital world. Whether it's a startup store or a blockchain empire, I deliver
+          fast, stylish, and innovative solutions. Let's build something epic together!
         </p>
       </div>
     </div>
@@ -261,9 +305,11 @@
   <!-- Services -->
   <section id="services" class="py-20 bg-transparent">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-4xl font-bold neon-glow text-purple-800 border-4 border-purple-800 text-pop glitch-text section-title-bg" data-text="Services">Services</h2>
+      <h2
+        class="text-4xl font-bold neon-glow text-purple-800 border-4 border-purple-800 text-pop glitch-text section-title-bg"
+        data-text="Services">Services</h2>
       <p class="mt-4 mb-8 text-lg text-pink-300">Explore my digital offerings</p>
-      
+
       <div class="card-carousel-container">
         <div class="card-carousel">
           <!-- Service Card 1 -->
@@ -272,58 +318,68 @@
               <div class="text-4xl text-blue-600 neon-glow mb-4">💻</div>
               <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Full-Stack Development</h3>
               <p class="mt-4 text-lg">
-                End-to-end web application development with modern frameworks and technologies. From concept to deployment, I build scalable, responsive, and performant applications.
+                End-to-end web application development with modern frameworks and technologies. From concept to
+                deployment, I build scalable, responsive, and performant applications.
               </p>
               <ul class="mt-4 text-left space-y-2">
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> React, Vue, Angular frontends</li>
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Node.js, Express, Python backends</li>
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Database design and optimization</li>
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> API development and integration</li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> React, Vue, Angular frontends
+                </li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Node.js, Express, Python
+                  backends</li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Database design and optimization
+                </li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> API development and integration
+                </li>
               </ul>
             </div>
           </div>
-          
+
           <!-- Service Card 2 -->
           <div class="carousel-card">
             <div class="carousel-card-content">
               <div class="text-4xl text-blue-600 neon-glow mb-4">🔐</div>
               <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Web3 & Blockchain</h3>
               <p class="mt-4 text-lg">
-                Cutting-edge blockchain solutions including smart contracts, NFT platforms, and decentralized applications. Bridging the gap between Web2 and Web3.
+                Cutting-edge blockchain solutions including smart contracts, NFT platforms, and decentralized
+                applications. Bridging the gap between Web2 and Web3.
               </p>
               <ul class="mt-4 text-left space-y-2">
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Smart contract development</li>
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> NFT minting and marketplaces</li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> NFT minting and marketplaces
+                </li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Crypto payment integration</li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> DApp development</li>
               </ul>
             </div>
           </div>
-          
+
           <!-- Service Card 3 -->
           <div class="carousel-card">
             <div class="carousel-card-content">
               <div class="text-4xl text-blue-600 neon-glow mb-4">🛒</div>
               <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">E-Commerce Solutions</h3>
               <p class="mt-4 text-lg">
-                Custom e-commerce platforms with secure payment processing, inventory management, and user-friendly interfaces. Boost your online sales with a tailored shopping experience.
+                Custom e-commerce platforms with secure payment processing, inventory management, and user-friendly
+                interfaces. Boost your online sales with a tailored shopping experience.
               </p>
               <ul class="mt-4 text-left space-y-2">
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Custom shopping carts</li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Payment gateway integration</li>
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Inventory management systems</li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Inventory management systems
+                </li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Customer analytics</li>
               </ul>
             </div>
           </div>
-          
+
           <!-- Service Card 4 -->
           <div class="carousel-card">
             <div class="carousel-card-content">
               <div class="text-4xl text-blue-600 neon-glow mb-4">🚀</div>
               <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">UI/UX Design</h3>
               <p class="mt-4 text-lg">
-                Intuitive and visually stunning interfaces that enhance user experience and engagement. From wireframes to final designs, I create memorable digital experiences.
+                Intuitive and visually stunning interfaces that enhance user experience and engagement. From wireframes
+                to final designs, I create memorable digital experiences.
               </p>
               <ul class="mt-4 text-left space-y-2">
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Responsive web design</li>
@@ -333,24 +389,26 @@
               </ul>
             </div>
           </div>
-          
+
           <!-- Service Card 5 -->
           <div class="carousel-card">
             <div class="carousel-card-content">
               <div class="text-4xl text-blue-600 neon-glow mb-4">🔒</div>
               <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Security & Performance</h3>
               <p class="mt-4 text-lg">
-                Secure and optimized web applications that protect your data and provide lightning-fast experiences for your users.
+                Secure and optimized web applications that protect your data and provide lightning-fast experiences for
+                your users.
               </p>
               <ul class="mt-4 text-left space-y-2">
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Security audits and implementation</li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Security audits and
+                  implementation</li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Performance optimization</li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> CDN integration</li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> SSL/TLS implementation</li>
               </ul>
             </div>
           </div>
-          
+
           <!-- Service Card 6 -->
           <div class="carousel-card">
             <div class="carousel-card-content">
@@ -363,14 +421,18 @@
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> React Native development</li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Progressive Web Apps (PWAs)</li>
                 <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> Push notifications</li>
-                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> App Store/Google Play deployment</li>
+                <li class="flex items-center"><span class="text-pink-700 mr-2">▶</span> App Store/Google Play deployment
+                </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="carousel-nav" style="position: absolute; bottom: -70px; left: 0; right: 0; display: flex; justify-content: center; gap: 15px; z-index: 100;">
-          <button class="carousel-nav-btn prev-btn" style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10094;</button>
-          <button class="carousel-nav-btn next-btn" style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10095;</button>
+        <div class="carousel-nav"
+          style="position: absolute; bottom: -70px; left: 0; right: 0; display: flex; justify-content: center; gap: 15px; z-index: 100;">
+          <button class="carousel-nav-btn prev-btn"
+            style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10094;</button>
+          <button class="carousel-nav-btn next-btn"
+            style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10095;</button>
         </div>
       </div>
     </div>
@@ -379,47 +441,60 @@
   <!-- Portfolio -->
   <section id="portfolio" class="py-20 bg-transparent">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-4xl font-bold neon-glow text-pink-700 border-4 border-blue-600 text-pop glitch-text section-title-bg" data-text="Portfolio">Portfolio</h2>
+      <h2
+        class="text-4xl font-bold neon-glow text-pink-700 border-4 border-blue-600 text-pop glitch-text section-title-bg"
+        data-text="Portfolio">Portfolio</h2>
       <p class="mt-4 mb-8 text-lg text-blue-600 neon-glow">Check out some of my recent work</p>
-      
+
       <div class="card-carousel-container">
         <div class="card-carousel">
           <!-- Portfolio Card 1: Lemon Club Collective -->
           <div class="carousel-card active">
             <div class="carousel-card-content">
-              <img src="assets/images/lemonclubscreenshot.png" alt="Screenshot of Lemon Club Collective website, a custom e-commerce platform for creators" class="w-full h-48 object-cover rounded-t-lg">
+              <img src="assets/images/lemonclubscreenshot.png"
+                alt="Screenshot of Lemon Club Collective website, a custom e-commerce platform for creators"
+                class="w-full h-48 object-cover rounded-t-lg">
               <div class="p-6">
                 <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Lemon Club Collective</h3>
-                <p class="mt-2 text-lg">A gamified Web3 platform with Solana NFT minting, e-commerce, and crypto payments (Stripe, PayPal, Coinbase, SOL). Features dynamic quests, user rewards, and an admin portal.</p>
+                <p class="mt-2 text-lg">A gamified Web3 platform with Solana NFT minting, e-commerce, and crypto
+                  payments (Stripe, PayPal, Coinbase, SOL). Features dynamic quests, user rewards, and an admin portal.
+                </p>
                 <div class="mt-4 flex flex-wrap gap-2">
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">React</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Solidity</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Node.js</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Web3.js</span>
                 </div>
-                <a href="https://www.lemonclubcollective.com" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Visit Site</a>
+                <a href="https://www.lemonclubcollective.com"
+                  class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">Visit
+                  Site</a>
               </div>
             </div>
           </div>
-          
+
           <!-- Portfolio Card 2: matthewkobilan.com -->
           <div class="carousel-card">
             <div class="carousel-card-content">
-              <img src="assets/images/matthewkobilan-screenshot.jpg" alt="Matthew Kobilan - Personal Website and Portfolio" class="w-full h-48 object-cover rounded-t-lg">
+              <img src="assets/images/matthewkobilan-screenshot.jpg"
+                alt="Matthew Kobilan - Personal Website and Portfolio" class="w-full h-48 object-cover rounded-t-lg">
               <div class="p-6">
                 <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">matthewkobilan.com</h3>
-                <p class="mt-2 text-lg">My personal site showcasing full-stack skills, e-commerce integration, and payment systems. A cyberpunk-inspired portfolio to connect with clients and display my tech prowess.</p>
+                <p class="mt-2 text-lg">My personal site showcasing full-stack skills, e-commerce integration, and
+                  payment systems. A cyberpunk-inspired portfolio to connect with clients and display my tech prowess.
+                </p>
                 <div class="mt-4 flex flex-wrap gap-2">
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">HTML5</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Tailwind CSS</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">JavaScript</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Stripe</span>
                 </div>
-                <a href="/" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">You're Here!</a>
+                <a href="/"
+                  class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition neon-border cyber-button">You're
+                  Here!</a>
               </div>
             </div>
           </div>
-          
+
           <!-- Portfolio Card 3: Coming Soon -->
           <div class="carousel-card">
             <div class="carousel-card-content">
@@ -428,7 +503,8 @@
               </div>
               <div class="p-6">
                 <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Coming Soon</h3>
-                <p class="mt-2 text-lg">A new exciting project is currently in development. Stay tuned for updates on this innovative digital experience.</p>
+                <p class="mt-2 text-lg">A new exciting project is currently in development. Stay tuned for updates on
+                  this innovative digital experience.</p>
                 <div class="mt-4 flex flex-wrap gap-2">
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Next.js</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Tailwind CSS</span>
@@ -438,7 +514,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Portfolio Card 4: Coming Soon -->
           <div class="carousel-card">
             <div class="carousel-card-content">
@@ -447,7 +523,8 @@
               </div>
               <div class="p-6">
                 <h3 class="text-2xl font-bold text-pink-700 neon-glow text-pop">Future Project</h3>
-                <p class="mt-2 text-lg">Another innovative project in the pipeline. Check back later to see what cutting-edge technology will be showcased here.</p>
+                <p class="mt-2 text-lg">Another innovative project in the pipeline. Check back later to see what
+                  cutting-edge technology will be showcased here.</p>
                 <div class="mt-4 flex flex-wrap gap-2">
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">React</span>
                   <span class="px-3 py-1 bg-blue-900 rounded-full text-sm">Node.js</span>
@@ -458,9 +535,12 @@
             </div>
           </div>
         </div>
-        <div class="carousel-nav" style="position: absolute; bottom: -70px; left: 0; right: 0; display: flex; justify-content: center; gap: 15px; z-index: 100;">
-          <button class="carousel-nav-btn prev-btn" style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10094;</button>
-          <button class="carousel-nav-btn next-btn" style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10095;</button>
+        <div class="carousel-nav"
+          style="position: absolute; bottom: -70px; left: 0; right: 0; display: flex; justify-content: center; gap: 15px; z-index: 100;">
+          <button class="carousel-nav-btn prev-btn"
+            style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10094;</button>
+          <button class="carousel-nav-btn next-btn"
+            style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10095;</button>
         </div>
       </div>
     </div>
@@ -469,9 +549,11 @@
   <!-- Pricing -->
   <section id="pricing" class="py-20 bg-transparent">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-4xl font-bold neon-glow text-blue-600 border-4 border-purple-800 text-pop glitch-text section-title-bg" data-text="Pricing">Pricing</h2>
+      <h2
+        class="text-4xl font-bold neon-glow text-blue-600 border-4 border-purple-800 text-pop glitch-text section-title-bg"
+        data-text="Pricing">Pricing</h2>
       <p class="mt-4 mb-8 text-lg text-pink-300">Transparent pricing for quality work</p>
-      
+
       <div class="card-carousel-container">
         <div class="card-carousel">
           <!-- Pricing Card 1: Basic -->
@@ -506,10 +588,12 @@
                   <p>30 days of support</p>
                 </div>
               </div>
-              <a href="#contact" class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Get Started</a>
+              <a href="#contact"
+                class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Get
+                Started</a>
             </div>
           </div>
-          
+
           <!-- Pricing Card 2: Pro -->
           <div class="carousel-card">
             <div class="carousel-card-content">
@@ -542,10 +626,12 @@
                   <p>60 days of support</p>
                 </div>
               </div>
-              <a href="#contact" class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Get Started</a>
+              <a href="#contact"
+                class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Get
+                Started</a>
             </div>
           </div>
-          
+
           <!-- Pricing Card 3: Enterprise -->
           <div class="carousel-card">
             <div class="carousel-card-content">
@@ -578,13 +664,18 @@
                   <p>90 days of support + maintenance</p>
                 </div>
               </div>
-              <a href="#contact" class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Get Started</a>
+              <a href="#contact"
+                class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Get
+                Started</a>
             </div>
           </div>
         </div>
-        <div class="carousel-nav" style="position: absolute; bottom: -70px; left: 0; right: 0; display: flex; justify-content: center; gap: 15px; z-index: 100;">
-          <button class="carousel-nav-btn prev-btn" style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10094;</button>
-          <button class="carousel-nav-btn next-btn" style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10095;</button>
+        <div class="carousel-nav"
+          style="position: absolute; bottom: -70px; left: 0; right: 0; display: flex; justify-content: center; gap: 15px; z-index: 100;">
+          <button class="carousel-nav-btn prev-btn"
+            style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10094;</button>
+          <button class="carousel-nav-btn next-btn"
+            style="width: 40px; height: 40px; border-radius: 50%; background-color: rgba(30, 30, 40, 0.8); border: 2px solid #5B21B6; color: #EC4899; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10095;</button>
         </div>
       </div>
     </div>
@@ -593,13 +684,17 @@
   <!-- Mobile Apps -->
   <section id="mobile-apps" class="py-20 bg-transparent">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-4xl font-bold neon-glow text-blue-600 border-4 border-purple-800 text-pop glitch-text section-title-bg" data-text="Mobile Apps">Mobile Apps</h2>
-      <div class="mt-12 max-w-4xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+      <h2
+        class="text-4xl font-bold neon-glow text-blue-600 border-4 border-purple-800 text-pop glitch-text section-title-bg"
+        data-text="Mobile Apps">Mobile Apps</h2>
+      <div
+        class="mt-12 max-w-4xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 class="text-2xl font-bold text-pink-700">Native Mobile Experience</h3>
             <p class="mt-4 text-lg">
-              Take your web platform to the next level with a custom mobile app. I develop iOS and Android apps that sync with your website, providing a seamless experience for your users.
+              Take your web platform to the next level with a custom mobile app. I develop iOS and Android apps that
+              sync with your website, providing a seamless experience for your users.
             </p>
             <ul class="mt-4 text-left space-y-2">
               <li>✔ iOS & Android Development</li>
@@ -611,7 +706,8 @@
           <div>
             <h3 class="text-2xl font-bold text-pink-700">Progressive Web Apps</h3>
             <p class="mt-4 text-lg">
-              Not ready for a full native app? I can transform your website into a Progressive Web App (PWA) that users can install on their devices, offering app-like functionality without the app store.
+              Not ready for a full native app? I can transform your website into a Progressive Web App (PWA) that users
+              can install on their devices, offering app-like functionality without the app store.
             </p>
             <ul class="mt-4 text-left space-y-2">
               <li>✔ Installable on Devices</li>
@@ -621,7 +717,9 @@
             </ul>
           </div>
         </div>
-        <a href="#contact" class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Discuss Your App</a>
+        <a href="#contact"
+          class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">Discuss
+          Your App</a>
       </div>
     </div>
   </section>
@@ -629,8 +727,11 @@
   <!-- Terminal Section -->
   <section id="terminal" class="py-20 bg-transparent">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-4xl font-bold neon-glow text-purple-800 border-4 border-purple-800 text-pop glitch-text section-title-bg" data-text="Terminal">Terminal</h2>
-      <p class="mt-4 text-lg text-pink-300">Interact with my digital brain. Type commands to learn more about me and my services.</p>
+      <h2
+        class="text-4xl font-bold neon-glow text-purple-800 border-4 border-purple-800 text-pop glitch-text section-title-bg"
+        data-text="Terminal">Terminal</h2>
+      <p class="mt-4 text-lg text-pink-300">Interact with my digital brain. Type commands to learn more about me and my
+        services.</p>
       <div id="terminal-container" class="mt-12 max-w-2xl mx-auto scanline animate-on-scroll"></div>
     </div>
   </section>
@@ -638,21 +739,32 @@
   <!-- Contact -->
   <section id="contact" class="py-20 bg-transparent">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-4xl font-bold neon-glow text-blue-600 glitch-text section-title-bg" data-text="Contact Me">Contact Me</h2>
+      <h2 class="text-4xl font-bold neon-glow text-blue-600 glitch-text section-title-bg" data-text="Contact Me">Contact
+        Me</h2>
       <form id="contact-form" class="mt-12 max-w-lg mx-auto animate-on-scroll">
-        <input type="text" name="name" placeholder="Name" class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
-        <input type="email" name="email" placeholder="Email" class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" required>
-        <textarea name="message" placeholder="Message" class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop" rows="5" required></textarea>
+        <input type="text" name="name" placeholder="Name"
+          class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop"
+          required>
+        <input type="email" name="email" placeholder="Email"
+          class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop"
+          required>
+        <textarea name="message" placeholder="Message"
+          class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop"
+          rows="5" required></textarea>
         <div id="form-status" class="mb-4 hidden">
           <p id="form-success" class="text-green-500 hidden">Message sent successfully! I'll get back to you soon.</p>
           <p id="form-error" class="text-red-500 hidden">There was an error sending your message. Please try again.</p>
         </div>
-        <button type="submit" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">
+        <button type="submit"
+          class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">
           <span id="submit-text">Send Message</span>
           <span id="submit-loading" class="hidden">
-            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <path class="opacity-75" fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+              </path>
             </svg>
             Sending...
           </span>
@@ -665,14 +777,18 @@
   <footer class="bg-gray-900 bg-opacity-80 py-8 text-center">
     <div class="container mx-auto px-4">
       <p class="text-xl font-bold neon-glow text-pink-500 mb-4">Matthew Kobilan</p>
-      <p class="text-lg text-blue-400 mb-4">info@matthewkobilan.com</p>
+
       <div class="flex justify-center space-x-6 mb-4">
-        <a href="https://x.com/matthewkobilan" target="_blank" class="text-blue-400 hover:text-pink-400 transition">Twitter</a>
-        <a href="https://www.linkedin.com/in/matthew-kobilan/" target="_blank" class="text-blue-400 hover:text-pink-400 transition">LinkedIn</a>
-        <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank" class="text-blue-400 hover:text-pink-400 transition">YouTube</a>
+        <a href="https://x.com/matthewkobilan" target="_blank"
+          class="text-blue-400 hover:text-pink-400 transition">Twitter</a>
+        <a href="https://www.linkedin.com/in/matthew-kobilan-70a985308/" target="_blank" rel="noopener noreferrer"
+          class="text-blue-400 hover:text-pink-500 transition transform hover:scale-110">
+          <img src="assets/images/linkedin.png" alt="LinkedIn" class="w-8 h-8">
+        </a>
+        <a href="https://www.youtube.com/@MatthewKobilan400" target="_blank"
+          class="text-blue-400 hover:text-pink-400 transition">YouTube</a>
         <a href="creators.html" class="text-blue-400 hover:text-pink-400 transition">For Creators</a>
       </div>
-      <p class="text-sm text-gray-400"> 2025 Matthew Kobilan. All rights reserved.</p>
     </div>
   </footer>
 
@@ -681,24 +797,24 @@
   <script src="assets/js/contact-form.js"></script>
   <script>
     // Ensure all carousels have navigation arrows on the home page
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
       document.querySelectorAll('.card-carousel-container').forEach(container => {
         // Check if navigation buttons already exist
         if (!container.querySelector('.carousel-nav')) {
           // Create navigation elements
           const nav = document.createElement('div');
           nav.className = 'carousel-nav';
-          
+
           const prevBtn = document.createElement('button');
           prevBtn.className = 'carousel-nav-btn prev-btn';
           prevBtn.innerHTML = '&#10094;'; // Left arrow
           prevBtn.setAttribute('aria-label', 'Previous card');
-          
+
           const nextBtn = document.createElement('button');
           nextBtn.className = 'carousel-nav-btn next-btn';
           nextBtn.innerHTML = '&#10095;'; // Right arrow
           nextBtn.setAttribute('aria-label', 'Next card');
-          
+
           nav.appendChild(prevBtn);
           nav.appendChild(nextBtn);
           container.appendChild(nav);
@@ -709,4 +825,5 @@
   <!-- Mobile Menu Script -->
   <script src="assets/js/mobile-menu.js"></script>
 </body>
+
 </html>

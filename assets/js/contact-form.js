@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
@@ -11,23 +11,24 @@ document.addEventListener('DOMContentLoaded', function() {
   // API Gateway endpoint URL
   const apiEndpoint = 'https://in53oczfrd.execute-api.us-east-1.amazonaws.com/prod/submit';
 
-  contactForm.addEventListener('submit', async function(e) {
+  contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
     // Show loading state
     submitText.classList.add('hidden');
     submitLoading.classList.remove('hidden');
     formStatus.classList.add('hidden');
     formSuccess.classList.add('hidden');
     formError.classList.add('hidden');
-    
+
     // Get form data
     const formData = {
       name: contactForm.elements.name.value,
       email: contactForm.elements.email.value,
-      message: contactForm.elements.message.value
+      message: contactForm.elements.message.value,
+      recipient: 'matthew.kobilan@gmail.com'
     };
-    
+
     try {
       // Send data to API Gateway endpoint
       const response = await fetch(apiEndpoint, {
@@ -37,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         body: JSON.stringify(formData)
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         // Show success message
         formStatus.classList.remove('hidden');

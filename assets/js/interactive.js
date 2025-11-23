@@ -1083,7 +1083,7 @@ class TerminalEffect {
       return `
         <div class="text-green-400">
           <p class="text-xl text-pink-500 mb-2">Contact Information:</p>
-          <p class="mb-1">Email: <span class="text-blue-400">info@matthewkobilan.com</span></p>
+          <p class="mb-1">Email: <span class="text-blue-400">matthew.kobilan@gmail.com</span></p>
           <p class="mb-1">Twitter: <span class="text-blue-400">@matthewkobilan</span></p>
           <p class="mb-4">Or use the contact form on the website.</p>
           <p>I typically respond within 24 hours to discuss your project!</p>
