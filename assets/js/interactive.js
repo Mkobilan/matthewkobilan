@@ -1063,16 +1063,30 @@ class TerminalEffect {
           <p class="text-xl text-pink-500 mb-2">Featured Projects:</p>
           
           <div class="mb-4">
-            <p class="text-blue-400 font-bold">Lemon Club Collective</p>
-            <p class="mb-1">A gamified Web3 platform with Solana NFT minting, e-commerce, and crypto payments.</p>
-            <p class="text-xs text-gray-400">Technologies: React, Solidity, Node.js, Web3.js</p>
-            <p class="text-xs text-pink-500">URL: <a href="https://www.lemonclubcollective.com" class="text-blue-400 hover:underline" target="_blank">lemonclubcollective.com</a></p>
+            <p class="text-blue-400 font-bold">BAYBOLT</p>
+            <p class="mb-1">Parts lookup that doesn't suck. Built for mechanics, by mechanics.</p>
+            <p class="text-xs text-gray-400">Technologies: Next.js, Tailwind CSS</p>
+            <p class="text-xs text-pink-500">URL: <a href="https://baybolt.vercel.app/garage" class="text-blue-400 hover:underline" target="_blank">baybolt.vercel.app</a></p>
+          </div>
+
+          <div class="mb-4">
+            <p class="text-blue-400 font-bold">InvoiceGen</p>
+            <p class="mb-1">Free & Simple invoice generator for freelancers and contractors.</p>
+            <p class="text-xs text-gray-400">Technologies: React, PWA, Local Storage</p>
+            <p class="text-xs text-pink-500">URL: <a href="https://invoicegen-sepia.vercel.app/" class="text-blue-400 hover:underline" target="_blank">invoicegen-sepia.vercel.app</a></p>
+          </div>
+
+          <div class="mb-4">
+            <p class="text-blue-400 font-bold">Raid Meme Generator</p>
+            <p class="mb-1">Generate custom raid plans with meme chaos for Destiny 2, WoW & Helldivers 2.</p>
+            <p class="text-xs text-gray-400">Technologies: Vite, React, Canvas API</p>
+            <p class="text-xs text-pink-500">URL: <a href="https://raidmemegen.vercel.app/" class="text-blue-400 hover:underline" target="_blank">raidmemegen.vercel.app</a></p>
           </div>
           
           <div class="mb-4">
             <p class="text-blue-400 font-bold">matthewkobilan.com</p>
             <p class="mb-1">Personal portfolio showcasing full-stack skills and cyberpunk design aesthetics.</p>
-            <p class="text-xs text-gray-400">Technologies: HTML5, Tailwind CSS, JavaScript, Stripe</p>
+            <p class="text-xs text-gray-400">Technologies: HTML5, Tailwind CSS, JavaScript</p>
             <p class="text-xs text-pink-500">URL: <a href="/" class="text-blue-400 hover:underline">matthewkobilan.com</a></p>
           </div>
         </div>
