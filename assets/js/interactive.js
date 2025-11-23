@@ -1084,10 +1084,10 @@ class TerminalEffect {
           </div>
           
           <div class="mb-4">
-            <p class="text-blue-400 font-bold">matthewkobilan.com</p>
+            <p class="text-blue-400 font-bold">matthewkobilan.vercel.app</p>
             <p class="mb-1">Personal portfolio showcasing full-stack skills and cyberpunk design aesthetics.</p>
             <p class="text-xs text-gray-400">Technologies: HTML5, Tailwind CSS, JavaScript</p>
-            <p class="text-xs text-pink-500">URL: <a href="/" class="text-blue-400 hover:underline">matthewkobilan.com</a></p>
+            <p class="text-xs text-pink-500">URL: <a href="/" class="text-blue-400 hover:underline">matthewkobilan.vercel.app</a></p>
           </div>
         </div>
       `;

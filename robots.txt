@@ -19,4 +19,4 @@ Allow: /assets/images/
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://matthewkobilan.com/sitemap.xml
+Sitemap: https://matthewkobilan.vercel.app/sitemap.xml

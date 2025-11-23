@@ -7,45 +7,45 @@
         http://www.google.com/schemas/sitemap-image/1.1
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
   <url>
-    <loc>https://matthewkobilan.com/</loc>
+    <loc>https://matthewkobilan.vercel.app/</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://matthewkobilan.com/assets/images/headshot.jpg</image:loc>
+      <image:loc>https://matthewkobilan.vercel.app/assets/images/headshot.jpg</image:loc>
       <image:title>Matthew Kobilan - Web Developer</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://matthewkobilan.com/creators.html</loc>
+    <loc>https://matthewkobilan.vercel.app/creators.html</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://matthewkobilan.com/assets/images/creators-og-image.jpg</image:loc>
+      <image:loc>https://matthewkobilan.vercel.app/assets/images/creators-og-image.jpg</image:loc>
       <image:title>Custom Websites for Content Creators</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://matthewkobilan.com/website-development.html</loc>
+    <loc>https://matthewkobilan.vercel.app/website-development.html</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://matthewkobilan.com/checkout.html</loc>
+    <loc>https://matthewkobilan.vercel.app/checkout.html</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://matthewkobilan.com/success.html</loc>
+    <loc>https://matthewkobilan.vercel.app/success.html</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://matthewkobilan.com/cancel.html</loc>
+    <loc>https://matthewkobilan.vercel.app/cancel.html</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

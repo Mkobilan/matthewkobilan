@@ -12,7 +12,7 @@ app.use(helmet({
       scriptSrc: ["'self'", "'unsafe-inline'", "cdn.tailwindcss.com", "js.stripe.com"],
       styleSrc: ["'self'", "'unsafe-inline'", "cdn.tailwindcss.com", "fonts.googleapis.com"],
       imgSrc: ["'self'", "data:", "*.matthewkobilan.com"],
-      connectSrc: ["'self'", "https://api.matthewkobilan.com", "https://in53oczfrd.execute-api.us-east-1.amazonaws.com"],
+      connectSrc: ["'self'", "https://matthewkobilan.vercel.app", "https://in53oczfrd.execute-api.us-east-1.amazonaws.com"],
       fontSrc: ["'self'", "fonts.gstatic.com", "fonts.googleapis.com"],
       objectSrc: ["'none'"],
       mediaSrc: ["'self'"],
