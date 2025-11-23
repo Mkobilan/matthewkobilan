@@ -74,7 +74,7 @@ class StarfieldBackground {
       // Project 3D coordinates to 2D
       const x = (star.x - cx) * (this.width / star.z) + cx;
       const y = (star.y - cy) * (this.width / star.z) + cy;
-      const size = (1 - star.z / this.width) * star.size * (this.warpSpeed ? 3 : 1);
+      const size = Math.max(0.1, (1 - star.z / this.width) * star.size * (this.warpSpeed ? 3 : 1));
 
       if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
         this.ctx.beginPath();
