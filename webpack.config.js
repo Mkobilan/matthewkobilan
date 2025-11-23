@@ -66,21 +66,14 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { 
-          from: 'assets/images', 
+        {
+          from: 'assets/images',
           to: 'assets/images',
           globOptions: {
             ignore: ['**/*.DS_Store'],
           },
         },
-        { 
-          from: 'assets/videos', 
-          to: 'assets/videos',
-        },
-        { 
-          from: 'assets/audio', 
-          to: 'assets/audio',
-        },
+
         {
           from: 'robots.txt',
           to: 'robots.txt',
@@ -88,6 +81,14 @@ module.exports = {
         {
           from: 'sitemap.xml',
           to: 'sitemap.xml',
+        },
+        {
+          from: 'hidden',
+          to: 'hidden',
+        },
+        {
+          from: 'assets/css',
+          to: 'assets/css',
         },
       ],
     }),
@@ -159,6 +160,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './cancel.html',
       filename: 'cancel.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      template: './website-development.html',
+      filename: 'website-development.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
