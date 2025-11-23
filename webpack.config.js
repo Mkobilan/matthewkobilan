@@ -9,7 +9,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     main: './assets/js/interactive.js',
-    contact: './assets/js/contact-form.js',
     mobile: './assets/js/mobile-menu.js',
     styles: './assets/css/main.css',
   },

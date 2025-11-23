@@ -740,35 +740,30 @@
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-4xl font-bold neon-glow text-blue-600 glitch-text section-title-bg" data-text="Contact Me">Contact
         Me</h2>
-      <form id="contact-form" class="mt-12 max-w-lg mx-auto animate-on-scroll">
-        <input type="text" name="name" placeholder="Name"
-          class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop"
-          required>
-        <input type="email" name="email" placeholder="Email"
-          class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop"
-          required>
-        <textarea name="message" placeholder="Message"
-          class="w-full p-3 mb-4 bg-gray-800 border border-pink-700 rounded-lg text-white focus:outline-none focus:border-blue-600 field-pop"
-          rows="5" required></textarea>
-        <div id="form-status" class="mb-4 hidden">
-          <p id="form-success" class="text-green-500 hidden">Message sent successfully! I'll get back to you soon.</p>
-          <p id="form-error" class="text-red-500 hidden">There was an error sending your message. Please try again.</p>
+      <div
+        class="mt-12 max-w-2xl mx-auto p-8 bg-gray-900 rounded-lg neon-border card-pop holographic-card animate-on-scroll">
+        <p class="text-2xl text-pink-500 font-bold mb-6">Need a website? An App?</p>
+        <p class="text-xl text-blue-400 mb-8">Contact me here:</p>
+
+        <div class="space-y-6 text-lg">
+          <div class="flex flex-col items-center">
+            <span class="text-gray-400 text-sm mb-1">Email</span>
+            <a href="mailto:degenseer@gmail.com"
+              class="text-white hover:text-pink-500 transition neon-glow">degenseer@gmail.com</a>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <span class="text-gray-400 text-sm mb-1">WhatsApp</span>
+            <a href="https://wa.me/19032168843" target="_blank"
+              class="text-white hover:text-green-400 transition neon-glow">1.903.216.8843</a>
+          </div>
+
+          <div class="mt-8">
+            <p class="text-blue-400 mb-4">Or contact me through my socials:</p>
+            <p class="text-pink-500 neon-pulse">DM at X or LinkedIn</p>
+          </div>
         </div>
-        <button type="submit"
-          class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition neon-border cyber-button">
-          <span id="submit-text">Send Message</span>
-          <span id="submit-loading" class="hidden">
-            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-              </path>
-            </svg>
-            Sending...
-          </span>
-        </button>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -791,7 +786,7 @@
 
   <!-- Interactive JS -->
   <script src="assets/js/interactive.js"></script>
-  <script src="assets/js/contact-form.js"></script>
+
   <script>
     // Ensure all carousels have navigation arrows on the home page
     window.addEventListener('load', function () {
