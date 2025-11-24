@@ -1343,11 +1343,6 @@ class TerminalEffect {
               <li>Create limited edition drops and collections</li>
             </ul>
           </div>
-          
-          <div class="mb-3">
-            <p class="text-blue-400 font-bold">Case Study: BayBolt</p>
-            <p>A showcase of NFT integration in a modern web application, demonstrating how digital collectibles can enhance user engagement and create new revenue streams.</p>
-          </div>
         </div>
       `;
     });
@@ -1376,13 +1371,13 @@ class TerminalEffect {
       return `
         <div class="text-green-400">
           <p class="text-xl text-pink-500 mb-2">Current Projects:</p>
-          <div class="text-left mb-3">
-            <p><span class="text-blue-400">BayBolt</span> - Lightning-fast web applications with real-time updates</p>
-            <p><span class="text-blue-400">Cyberpunk UI Kit</span> - Open source component library for futuristic interfaces</p>
-            <p><span class="text-blue-400">NeonGrid CMS</span> - Headless content management system</p>
-            <p><span class="text-blue-400">Shadowrun Tools</span> - Developer utilities for modern web apps</p>
+          <div class="text-left mb-3 space-y-2">
+            <p><span class="text-blue-400">BayBolt</span> - Streamlined parts lookup tool for mechanics and auto shops.</p>
+            <p><span class="text-blue-400">InvoiceGen</span> - Automated invoice generation with customizable templates.</p>
+            <p><span class="text-blue-400">RaidGen</span> - Dungeon master's toolkit for generating encounters and loot.</p>
+            <p><span class="text-blue-400">MatthewKobilan</span> - My personal portfolio and web development playground.</p>
           </div>
-          <p>Each project is built with cutting-edge technology and modern development practices.</p>
+          <p>Each project is built with modern web technologies and responsive design.</p>
         </div>
       `;
     });
