@@ -804,7 +804,7 @@ class TerminalEffect {
 
     const prompt = document.createElement('span');
     prompt.className = 'terminal-prompt text-pink-500 mr-2';
-    prompt.innerHTML = 'info@matthewkobilan.com:~$ ';
+    prompt.innerHTML = 'visitor@matthewkobilan:~$ ';
 
     this.input = document.createElement('input');
     this.input.type = 'text';
@@ -903,7 +903,7 @@ class TerminalEffect {
   executeCommand(command) {
     if (!command) return;
 
-    this.print(`<div class="text-pink-500">info@matthewkobilan.com:~$ <span class="text-green-400">${command}</span></div>`);
+    this.print(`<div class="text-pink-500">visitor@matthewkobilan:~$ <span class="text-green-400">${command}</span></div>`);
 
     if (command.toLowerCase() === 'neonstorm synthwave matrix') {
       const output = toggleCoreBreachEffect(this);
@@ -1345,8 +1345,8 @@ class TerminalEffect {
           </div>
           
           <div class="mb-3">
-            <p class="text-blue-400 font-bold">Case Study: Lemon Club Collective</p>
-            <p>An NFT project featuring unique digital collectibles that grant access to exclusive content, community features, and real-world perks.</p>
+            <p class="text-blue-400 font-bold">Case Study: BayBolt</p>
+            <p>A showcase of NFT integration in a modern web application, demonstrating how digital collectibles can enhance user engagement and create new revenue streams.</p>
           </div>
         </div>
       `;
@@ -1372,17 +1372,17 @@ class TerminalEffect {
       `;
     });
 
-    this.addCommand('examples', 'Show example creator sites', () => {
+    this.addCommand('examples', 'Show current projects', () => {
       return `
         <div class="text-green-400">
-          <p class="text-xl text-pink-500 mb-2">Example Creator Sites:</p>
+          <p class="text-xl text-pink-500 mb-2">Current Projects:</p>
           <div class="text-left mb-3">
-            <p><span class="text-blue-400">Lemon Club Collective</span> - NFT community with exclusive content</p>
-            <p><span class="text-blue-400">CyberFunk Music</span> - Musician platform with direct-to-fan sales</p>
-            <p><span class="text-blue-400">Digital Nomad Academy</span> - Course platform with community</p>
-            <p><span class="text-blue-400">ArtistX Gallery</span> - Digital art marketplace with NFTs</p>
+            <p><span class="text-blue-400">BayBolt</span> - Lightning-fast web applications with real-time updates</p>
+            <p><span class="text-blue-400">Cyberpunk UI Kit</span> - Open source component library for futuristic interfaces</p>
+            <p><span class="text-blue-400">NeonGrid CMS</span> - Headless content management system</p>
+            <p><span class="text-blue-400">Shadowrun Tools</span> - Developer utilities for modern web apps</p>
           </div>
-          <p>Each site is custom-built for the creator's specific needs and audience.</p>
+          <p>Each project is built with cutting-edge technology and modern development practices.</p>
         </div>
       `;
     });
@@ -1471,7 +1471,15 @@ class TerminalEffect {
       } else if (filename === 'skills.yml') {
         return this.commands['skills'].execute();
       } else if (filename === 'contact.json') {
-        return this.commands['contact'].execute();
+        // Return a clean contact information output
+        return `
+          <div class="text-green-400">
+            <p class="text-xl text-pink-500 mb-2">Contact Information (contact.json):</p>
+            <p class="mb-1">Email: <span class="text-blue-400">degenseer@gmail.com</span></p>
+            <p class="mb-1">WhatsApp: <span class="text-blue-400">1.903.216.8843</span></p>
+            <p class="mb-1">Twitter: <span class="text-blue-400">@matthewkobilan</span></p>
+          </div>
+        `;
       } else if (filename === 'nft.sol') {
         return this.commands['nft'].execute();
       } else {
